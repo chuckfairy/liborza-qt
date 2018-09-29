@@ -8,6 +8,8 @@
 #include <QtCore>
 #include <QWidget>
 
+#include <Jack/Server.h>
+
 #include <ui_PatchBay.h>
 
 #include "EffectDropdown.h"
@@ -15,15 +17,10 @@
 
 using std::vector;
 
-
-/**
- * Forwarding
- */
-
-class MainWindow;
+using Jack::Server;
 
 
-namespace Orza { namespace App { namespace Widget {
+namespace Orza { namespace Widget {
 
 class PatchbayPlugin;
 
@@ -78,7 +75,7 @@ class Patchbay : public QWidget {
 
     private:
 
-        MainWindow * _App;
+        Server * _Server;
 
         QWidget * _WidgetContent;
 
@@ -96,4 +93,4 @@ class Patchbay : public QWidget {
 
 };
 
-} } };
+} }

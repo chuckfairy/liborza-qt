@@ -13,7 +13,6 @@ find_package(Qt5Qml REQUIRED)
 
 
 file(GLOB liborza.qt_UIS
-    MainWindow.ui
     Widget/PatchBay.ui
     Widget/PatchBayItem.ui
     LV2/PluginArea.ui
@@ -51,7 +50,6 @@ file(
     liborza.qt_SRC
     "${ORZABAL_ROOT_PATH}/lib-src/QtAwesome/*.cpp"
     Resource/*.cpp
-    MainWindow.cpp
     main.cpp
     #**/moc_*.cpp
     #*.moc
@@ -88,7 +86,7 @@ QT5_WRAP_CPP( MY_MOCED_FILES ${moc_files} )
 
 # Main executable
 
-add_executable(liborza.qt ${liborza.qt_SRC} ${RESOURCES} ${MY_MOCED_FILES} )
+add_library(liborza-qt ${liborza.qt_SRC} ${RESOURCES} ${MY_MOCED_FILES} )
 
 target_link_libraries( liborza.qt
     PUBLIC

@@ -1,8 +1,6 @@
 /**
  * Patchbay tab UI impl
  */
-#include <MainWindow.h>
-
 #include <Jack/Patchbay.h>
 #include <Jack/PatchbayEffects.h>
 
@@ -12,16 +10,15 @@
 #include "Patchbay.h"
 
 
-namespace Orza { namespace App { namespace Widget {
+namespace Orza { namespace Widget {
 
-Patchbay::Patchbay( MainWindow * app ) :
-    _App( app ),
+Patchbay::Patchbay( Server * server ) :
+    _Server( server ),
     _WidgetContent( new QWidget() ),
     _LayoutWidget( new QWidget() ),
-    _Dropdown( new EffectDropdown( app->getPluginSearch() ) )
+    _Dropdown( new EffectDropdown( app->getPluginSearch() ) ),
+    _Spacer( new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding) )
 {
-
-    _Spacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
     _UI.setupUi( _WidgetContent );
 
@@ -76,11 +73,11 @@ void Patchbay::handleAddClick() {
 
 void Patchbay::addPlugin( Audio::Plugin * p ) {
 
-    Jack::Patchbay * h = _App->getServer()->getPatchbay();
+    Jack::Patchbay * h = _Server->getPatchbay();
 
     h->getEffects()->addEffect( p );
 
-    PatchbayPlugin * plugin = new PatchbayPlugin( _App->getServer(), p );
+    PatchbayPlugin * plugin = new PatchbayPlugin( _Server, p );
 
     _Layout->addWidget( plugin->getWidget() );
 
@@ -112,7 +109,7 @@ void Patchbay::addPlugin( Audio::Plugin * p ) {
 
 void Patchbay::removePlugin( PatchbayPlugin * plugin ) {
 
-    Jack::Patchbay * h = _App->getServer()->getPatchbay();
+    Jack::Patchbay * h = _Server->getPatchbay();
 
     h->getEffects()->removeEffect( plugin->getPlugin() );
 
@@ -133,7 +130,7 @@ void Patchbay::handleRemoveClick( PatchbayPlugin * plugin ) {
 
 void Patchbay::handleActivateClick( PatchbayPlugin * plugin ) {
 
-    Jack::Patchbay * h = _App->getServer()->getPatchbay();
+    Jack::Patchbay * h = _Server->getPatchbay();
 
     h->getEffects()->connectEffectPorts();
 
@@ -156,4 +153,4 @@ void Patchbay::clearPlugins() {
 
 }
 
-} } };
+} };
