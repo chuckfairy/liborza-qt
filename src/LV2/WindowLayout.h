@@ -34,7 +34,7 @@
 #define CONTROL_WIDTH 150
 #define DIAL_STEPS    10000
 
-namespace Orza { namespace App { namespace LV2UI {
+namespace Orza { namespace LV2UI {
 
 /**
  * Layout of plugin
@@ -124,4 +124,4 @@ class Control : public QGroupBox {
 
 };
 
-}; }; };
+} }

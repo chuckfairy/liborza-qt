@@ -8,6 +8,8 @@
 #include <QtCore>
 #include <QWidget>
 
+#include <Jack/Server.h>
+
 #include <ui_SingleInstrument.h>
 
 #include "InstrumentDropdown.h"
@@ -15,15 +17,10 @@
 
 using std::vector;
 
-
-/**
- * Forwarding
- */
-
-class MainWindow;
+using Jack::Server;
 
 
-namespace Orza { namespace App { namespace Widget {
+namespace Orza { namespace Widget {
 
 
 /**
@@ -36,7 +33,7 @@ class SingleInstrument : public QWidget {
 
     public:
 
-        SingleInstrument( MainWindow * );
+        SingleInstrument( Server * );
 
 
         /**
@@ -63,7 +60,7 @@ class SingleInstrument : public QWidget {
 
     private:
 
-        MainWindow * _App;
+        Server * _Server;
 
         QWidget * _WidgetContent;
 
@@ -84,4 +81,4 @@ class SingleInstrument : public QWidget {
 
 };
 
-}; }; };
+} }

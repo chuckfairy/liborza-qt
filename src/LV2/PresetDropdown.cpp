@@ -6,7 +6,7 @@
 #include <LV2/Plugin.h>
 #include <LV2/PluginPreset.h>
 
-namespace Orza { namespace App { namespace LV2UI {
+namespace Orza { namespace LV2UI {
 
 /**
  * Main construct and setup
@@ -63,4 +63,4 @@ void PresetDropdown::handleSelectionChanged( int index ) {
 
 };
 
-}; }; };
+} }

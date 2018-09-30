@@ -6,11 +6,12 @@
 #include <QtCore>
 #include <QLineEdit>
 
-#include <Pi/TouchscreenInput.h>
+//#include <Pi/TouchscreenInput.h>
 
-#include <Config/BuildType.h>
+//#include <Config/BuildType.h>
 
-namespace Orza { namespace App { namespace Widget {
+
+namespace Orza { namespace Widget {
 
 template<typename QType>
 class BaseEdit : public QType {
@@ -26,11 +27,11 @@ class BaseEdit : public QType {
 
         void mousePressEvent( QMouseEvent * e ) {
 
-            if( Config::ORZA_BUILD_CONFIG == Config::Pi ) {
+            //if( Config::ORZA_BUILD_CONFIG == Config::Pi ) {
 
-                Pi::runKeyboardCommand();
+                //Pi::runKeyboardCommand();
 
-            }
+            //}
 
         };
 
@@ -60,4 +61,4 @@ class BasePasswordEdit : public BaseEdit<QLineEdit> {
 
 };
 
-}; }; };
+} }

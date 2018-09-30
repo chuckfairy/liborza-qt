@@ -3,7 +3,7 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 # Instruct CMake to run moc automatically when needed.
 #set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTOUIC ON)
+#set(CMAKE_AUTOUIC ON)
 set(AUTOGEN_TARGET_DEPENDS ON)
 
 # find the location of Qt header files and libraries
@@ -12,8 +12,9 @@ find_package(Qt5Core REQUIRED)
 find_package(Qt5Qml REQUIRED)
 
 
-file(GLOB liborza.qt_UIS
+file(GLOB liborza-qt_UIS
     Widget/PatchBay.ui
+    Widget/SingleInstrument.ui
     Widget/PatchBayItem.ui
     LV2/PluginArea.ui
     MidiControl/Control.ui
@@ -23,7 +24,7 @@ file(GLOB liborza.qt_UIS
 
 #file(GLOB common-ladspa ../common/LADSPA/*.cpp)
 
-qt5_wrap_ui(liborza.qt_UIS ${liborza.qt_UIS} )
+qt5_wrap_ui(liborza-qt_UIS ${liborza-qt_UIS} )
 
 qt5_add_resources(RESOURCES ./Resources.qrc)
 
@@ -40,6 +41,10 @@ include_directories(
     "${ORZABAL_ROOT_PATH}/src"
     "${ORZABAL_ROOT_PATH}/src/common/Audio"
 
+    "../lib-src"
+    "../../liborza/lib-src"
+    "../../liborza/src"
+
     ${Boost_INCLUDE_DIR}
 )
 
@@ -47,13 +52,14 @@ include_directories(
 # tell CMake to compile every .cpp file in this directory and add it to an executable named `liborza.qt`
 file(
     GLOB
-    liborza.qt_SRC
+    liborza-qt_SRC
     "${ORZABAL_ROOT_PATH}/lib-src/QtAwesome/*.cpp"
     Resource/*.cpp
     main.cpp
     #**/moc_*.cpp
     #*.moc
     Widget/*.cpp
+    #Layouts/*.cpp
     LV2/*.cpp
     Settings/*.cpp
     Settings/Events/*.cpp
@@ -86,13 +92,14 @@ QT5_WRAP_CPP( MY_MOCED_FILES ${moc_files} )
 
 # Main executable
 
-add_library(liborza-qt ${liborza.qt_SRC} ${RESOURCES} ${MY_MOCED_FILES} )
+add_library(liborza-qt STATIC ${liborza-qt_SRC} ${RESOURCES} ${MY_MOCED_FILES} ${liborza-qt_UIS})
 
-target_link_libraries( liborza.qt
+target_link_libraries( liborza-qt
     PUBLIC
     dl
     liborza-common-jack
     liborza-common-plugin
+    liborza-common-lv2
     Qt5::Widgets
     Qt5::Core
     Qt5::Gui
@@ -101,7 +108,7 @@ target_link_libraries( liborza.qt
 )
 
 install( TARGETS
-   liborza.qt
+   liborza-qt
 
    RUNTIME DESTINATION bin
    LIBRARY DESTINATION lib

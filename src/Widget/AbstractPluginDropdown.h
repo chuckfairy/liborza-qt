@@ -23,7 +23,7 @@
 using std::vector;
 
 
-namespace Orza { namespace App { namespace Widget {
+namespace Orza { namespace Widget {
 
 
 /**
@@ -103,4 +103,4 @@ class AbstractPluginDropdown :
 
 };
 
-} } };
+} }

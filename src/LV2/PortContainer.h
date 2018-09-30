@@ -6,7 +6,7 @@
 #include <LV2/UI.h>
 #include <LV2/Port.h>
 
-namespace Orza { namespace App { namespace LV2UI {
+namespace Orza { namespace LV2UI {
 
 /**
  * Forward
@@ -19,4 +19,4 @@ struct PortContainer {
     Control * controlWidget;
 };
 
-}; }; };
+} }

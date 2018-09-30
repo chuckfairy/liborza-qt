@@ -16,11 +16,11 @@
 
 using std::vector;
 
-using Orza::App::Widget::InputDropdown;
-using Orza::App::Widget::OutputDropdown;
+using Orza::Widget::InputDropdown;
+using Orza::Widget::OutputDropdown;
 
 
-namespace Orza { namespace App { namespace LV2UI {
+namespace Orza { namespace LV2UI {
 
 
 /**
@@ -137,4 +137,4 @@ void IOPortChanger::setDefaultConnected() {
 
 };
 
-}; }; };
+} }

@@ -7,7 +7,7 @@
 #include <QComboBox>
 #include <QListView>
 
-namespace Orza { namespace App { namespace Widget {
+namespace Orza { namespace Widget {
 
 class AbstractDropdown : public QComboBox {
 
@@ -27,4 +27,4 @@ class AbstractDropdown : public QComboBox {
 
 };
 
-}; }; };
+} }

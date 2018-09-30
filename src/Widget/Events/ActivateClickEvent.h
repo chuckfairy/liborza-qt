@@ -9,7 +9,7 @@
 #include <Util/Dispatcher.h>
 
 
-namespace Orza { namespace App { namespace Widget {
+namespace Orza { namespace Widget {
 
 template <class Interface, class Cast> class ActivateClickEvent : public Util::Event {
 
@@ -33,4 +33,4 @@ template <class Interface, class Cast> class ActivateClickEvent : public Util::E
 
 };
 
-} } };
+} }

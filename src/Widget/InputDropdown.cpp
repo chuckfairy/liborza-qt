@@ -13,7 +13,7 @@
 using std::vector;
 
 
-namespace Orza { namespace App { namespace Widget {
+namespace Orza { namespace Widget {
 
 
 /**
@@ -107,4 +107,4 @@ void InputDropdown::handleSelectionChanged( int index ) {
 
 };
 
-}; }; };
+} }

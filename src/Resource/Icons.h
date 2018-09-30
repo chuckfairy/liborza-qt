@@ -7,7 +7,7 @@
 #include <QApplication>
 #include <QIcon>
 
-namespace Orza { namespace App { namespace Resource {
+namespace Orza { namespace Resource {
 
 class Icons {
 
@@ -30,4 +30,4 @@ class Icons {
 
 };
 
-}; }; };
+} }

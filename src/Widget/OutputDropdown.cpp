@@ -13,7 +13,7 @@
 using std::vector;
 
 
-namespace Orza { namespace App { namespace Widget {
+namespace Orza { namespace Widget {
 
 
 /**
@@ -104,4 +104,4 @@ const char * OutputDropdown::getCurrentJackPort() {
 
 };
 
-}; }; };
+} }

@@ -35,7 +35,7 @@ class Patchbay : public QWidget {
 
     public:
 
-        Patchbay( MainWindow * );
+        Patchbay( Server * );
 
 
         /**

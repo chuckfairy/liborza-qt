@@ -1,9 +1,11 @@
 /**
  * Single instrument widget
  */
+#include <QListView>
+
 #include <LV2/UIDriver.h>
 
-#include <MainWindow.h>
+#include <PluginSearch/LoadedPlugins.h>
 
 #include "SingleInstrument.h"
 
@@ -12,19 +14,20 @@
 
 using std::vector;
 
-using Orza::App::LV2UI::UIDriver;
+using Orza::PluginSearch::LoadedPlugins;
+using Orza::LV2UI::UIDriver;
 
 
-namespace Orza { namespace App { namespace Widget {
+namespace Orza { namespace Widget {
 
 
 /**
  * Main class
  */
 
-SingleInstrument::SingleInstrument( MainWindow * app ) :
-    _App( app ),
-    _Dropdown( new InstrumentDropdown( app->getPluginSearch() ) ),
+SingleInstrument::SingleInstrument( Server * app ) :
+    _Server( app ),
+    _Dropdown( new InstrumentDropdown( LoadedPlugins::getInstance() ) ),
     _WidgetContent( new QWidget() )
 {
 
@@ -70,15 +73,13 @@ void SingleInstrument::clearPlugin() {
 
 void SingleInstrument::setPlugin( Audio::Plugin * p ) {
 
-    Jack::Server * server = _App->getServer();
-
-    UIDriver * driver = new UIDriver( server, (LV2::UI*) p->getUI() );
+    UIDriver * driver = new UIDriver( _Server, (LV2::UI*) p->getUI() );
 
     p->getUI()->addDriver( driver );
 
-    server->getPatchbay()->clearPlugins();
+    _Server->getPatchbay()->clearPlugins();
 
-    server->getPatchbay()->addPlugin( p );
+    _Server->getPatchbay()->addPlugin( p );
 
     HAS_PLUGIN = true;
 
@@ -100,4 +101,4 @@ void SingleInstrument::handleChange( void * data ) {
 
 };
 
-}; }; };
+} }

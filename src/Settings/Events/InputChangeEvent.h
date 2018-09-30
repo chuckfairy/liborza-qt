@@ -5,7 +5,7 @@
 
 #include <Util/Dispatcher.h>
 
-namespace Orza { namespace App {  namespace Settings {
+namespace Orza { namespace Settings {
 
 /**
  * Main class
@@ -34,4 +34,4 @@ class InputChangeEvent : public Util::Event {
 
 };
 
-}; }; };
+} }

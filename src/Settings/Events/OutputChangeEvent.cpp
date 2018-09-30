@@ -6,7 +6,7 @@
 #include "OutputChangeEvent.h"
 
 
-namespace Orza { namespace App {  namespace Settings {
+namespace Orza { namespace Settings {
 
 /**
  * Construct
@@ -29,4 +29,4 @@ void OutputChangeEvent::run( void * data ) {
 
 };
 
-}; }; };
+} }

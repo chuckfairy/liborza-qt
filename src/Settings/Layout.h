@@ -6,22 +6,23 @@
 #include <QtCore>
 #include <QWidget>
 
-#include <Layouts/LayoutWriter.h>
+//#include <Layouts/LayoutWriter.h>
+#include <Jack/Server.h>
 
 #include <Widget/OutputDropdown.h>
 #include <Widget/InputDropdown.h>
 #include <Widget/BaseLineEdit.h>
 
-using Orza::App::Widget::InputDropdown;
-using Orza::App::Widget::OutputDropdown;
+using Orza::Widget::InputDropdown;
+using Orza::Widget::OutputDropdown;
+using Jack::Server;
+
 
 /**
  * Forwading
  */
 
-class MainWindow;
-
-namespace Orza { namespace App {  namespace Settings {
+namespace Orza { namespace Settings {
 
 /**
  * class
@@ -34,7 +35,7 @@ class Layout : public QWidget {
 
     public:
 
-        Layout( MainWindow * );
+        Layout( Server * );
 
         void updateOutputPorts();
 
@@ -69,9 +70,9 @@ class Layout : public QWidget {
 
     private:
 
-        MainWindow * _App;
+        Server * _Server;
 
-        Orza::App::Layouts::LayoutWriter * _LayoutWriter;
+        //Orza::App::Layouts::LayoutWriter * _LayoutWriter;
 
         /**
          * Widget dropdowns
@@ -104,4 +105,4 @@ class Layout : public QWidget {
 
 };
 
-}; }; };
+} }

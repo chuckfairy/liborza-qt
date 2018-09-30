@@ -16,10 +16,10 @@
 #include <Resource/Icons.h>
 
 
-using Orza::App::Widget::NodeRemoveEvent;
+using Orza::Widget::NodeRemoveEvent;
 
 
-namespace Orza { namespace App { namespace Widget {
+namespace Orza { namespace Widget {
 
 class TreeNode : public QWidget, public Util::Dispatcher {
 
@@ -95,4 +95,4 @@ class TreeNode : public QWidget, public Util::Dispatcher {
 
 };
 
-}; }; };
+} }

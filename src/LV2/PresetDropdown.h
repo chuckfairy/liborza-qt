@@ -22,7 +22,7 @@ class Plugin;
 };
 
 
-namespace Orza { namespace App { namespace LV2UI {
+namespace Orza { namespace LV2UI {
 
 
 /**
@@ -66,4 +66,4 @@ class PresetDropdown : public QComboBox {
 
 };
 
-}; }; };
+} }

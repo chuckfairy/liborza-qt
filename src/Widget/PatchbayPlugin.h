@@ -27,7 +27,7 @@ namespace LV2 {
 };
 
 
-namespace Orza { namespace App { namespace Widget {
+namespace Orza { namespace Widget {
 
 /**
  * Main class
@@ -118,4 +118,4 @@ class PatchbayPlugin : public QWidget, public Util::Dispatcher {
 
 };
 
-} } };
+} }

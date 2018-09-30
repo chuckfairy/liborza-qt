@@ -7,7 +7,7 @@
 
 #include <Jack/Server.h>
 
-namespace Orza { namespace App {  namespace Settings {
+namespace Orza { namespace Settings {
 
 /**
  * Forwarding
@@ -33,4 +33,4 @@ class OutputChangeEvent : Util::Event {
 
 };
 
-}; }; };
+} }

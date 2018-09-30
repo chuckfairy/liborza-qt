@@ -10,7 +10,7 @@
 #include <lilv/lilv.h>
 #include <LV2/Port.h>
 
-namespace Orza { namespace App { namespace LV2UI {
+namespace Orza { namespace LV2UI {
 
 FlowLayout::FlowLayout(QWidget* parent, int margin, int hSpacing, int vSpacing)
     : QLayout(parent), m_hSpace(hSpacing), m_vSpace(vSpacing)
@@ -285,4 +285,4 @@ void Control::dialChanged(int dialValue) {
 
 }
 
-}; }; };
+} }

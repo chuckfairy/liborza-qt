@@ -16,7 +16,7 @@
 #include <Widget/AbstractIODropdown.h>
 
 
-namespace Orza { namespace App { namespace LV2UI {
+namespace Orza { namespace LV2UI {
 
 class IOPortChanger : public QWidget {
 
@@ -79,4 +79,4 @@ class IOPortChanger : public QWidget {
 };
 
 
-}; }; };
+} }

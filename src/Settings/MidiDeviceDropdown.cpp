@@ -4,8 +4,6 @@
  */
 #include <vector>
 
-#include <MainWindow.h>
-
 #include <Jack/Port.h>
 #include <Jack/Server.h>
 #include <Jack/Midi.h>
@@ -14,19 +12,20 @@
 
 using std::vector;
 
+using Jack::Server;
+
 
 /**
  * Constructor test
  *
  */
 
-MidiDeviceDropdown::MidiDeviceDropdown( MainWindow * win ) :
+MidiDeviceDropdown::MidiDeviceDropdown( Server * win ) :
     QComboBox(),
-    _App( win )
+    _Server( win )
 {
 
-    vector<Jack::Port> ports = _App->getServer()
-        ->getMidi()
+    vector<Jack::Port> ports = _Server->getMidi()
         ->getMidiPorts();
 
     vector<Jack::Port>::iterator itVec;

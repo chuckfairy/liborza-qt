@@ -12,7 +12,7 @@
 using Audio::Plugin;
 
 
-namespace Orza { namespace App { namespace Widget {
+namespace Orza { namespace Widget {
 
 
 /**
@@ -53,4 +53,4 @@ bool AbstractPluginDropdown::addPlugin( InstrumentOption *instrument, const int 
 
 };
 
-} } };
+} }

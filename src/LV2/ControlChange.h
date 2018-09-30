@@ -3,7 +3,7 @@
  */
 #pragma once
 
-namespace Orza { namespace App { namespace LV2UI {
+namespace Orza { namespace LV2UI {
 
 struct ControlChange {
     uint32_t index;
@@ -12,4 +12,4 @@ struct ControlChange {
     uint8_t  body[];
 };
 
-};
+} }

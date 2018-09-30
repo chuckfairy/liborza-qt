@@ -19,7 +19,7 @@ using std::map;
 using Orza::PluginSearch::LoadedPlugins;
 
 
-namespace Orza { namespace App { namespace Widget {
+namespace Orza { namespace Widget {
 
 
 /**
@@ -40,4 +40,4 @@ class EffectDropdown : public AbstractPluginDropdown {
 
 };
 
-} } };
+} }

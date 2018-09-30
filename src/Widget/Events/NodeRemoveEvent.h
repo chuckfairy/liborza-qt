@@ -9,7 +9,7 @@
 #include <Util/Dispatcher.h>
 
 
-namespace Orza { namespace App { namespace Widget {
+namespace Orza { namespace Widget {
 
 template <class Interface, class Cast>
 class NodeRemoveEvent : public Util::Event {
@@ -34,5 +34,4 @@ class NodeRemoveEvent : public Util::Event {
 
 };
 
-} } };
-
+} }

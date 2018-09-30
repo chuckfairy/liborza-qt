@@ -7,35 +7,37 @@
 
 #include <QtCore>
 
-#include <MainWindow.h>
-
-#include <Layouts/LayoutLoader.h>
+//#include <Layouts/LayoutLoader.h>
 
 #include "Events/OutputChangeEvent.h"
 #include "Events/InputChangeEvent.h"
 #include "Layout.h"
 
-using Orza::App::Widget::InputDropdown;
-using Orza::App::Widget::OutputDropdown;
+#include <Jack/Patchbay.h>
+#include <Jack/PatchbayEffects.h>
+
+using Orza::Widget::InputDropdown;
+using Orza::Widget::OutputDropdown;
+using Jack::Server;
 
 using std::string;
 using std::vector;
 
 
-namespace Orza { namespace App {  namespace Settings {
+namespace Orza { namespace Settings {
 
 
 /**
  * Construct
  */
 
-Layout::Layout( MainWindow * win ) :
-    _App( win ),
-    _LayoutWriter( new Orza::App::Layouts::LayoutWriter ),
+Layout::Layout( Server * win ) :
+    _Server( win ),
+    //_LayoutWriter( new Orza::Layouts::LayoutWriter ),
     _PresetName( new Widget::BaseLineEdit )
 {
 
-    _App->getUI()->preset_save_layout->insertWidget( 0, _PresetName );
+    //_App->getUI()->preset_save_layout->insertWidget( 0, _PresetName );
 
     setDropdowns();
     setEvents();
@@ -51,29 +53,29 @@ Layout::Layout( MainWindow * win ) :
 
 void Layout::setDropdowns() {
 
-    _LeftOutput = new OutputDropdown( _App->getServer() );
-    _RightOutput = new OutputDropdown( _App->getServer() );
+    _LeftOutput = new OutputDropdown( _Server );
+    _RightOutput = new OutputDropdown( _Server );
 
     _LeftOutput->setCurrentIndex( 1 );
     _RightOutput->setCurrentIndex( 2 );
 
-    _InputDropdown = new InputDropdown( _App->getServer() );
+    _InputDropdown = new InputDropdown( _Server );
 
 
 
     //Settings
 
-    QComboBox * dropdown = _App->getUI()->load_layout_dropdown;
+    //QComboBox * dropdown = _App->getUI()->load_layout_dropdown;
 
-    vector<string> fileNames = _App->getLayoutLoader()->getFileNames();
+    //vector<string> fileNames = _App->getLayoutLoader()->getFileNames();
 
-    vector<string>::const_iterator it;
+    //vector<string>::const_iterator it;
 
-    for( it = fileNames.begin(); it < fileNames.end(); ++ it ) {
+    //for( it = fileNames.begin(); it < fileNames.end(); ++ it ) {
 
-        dropdown->addItem( it->c_str() );
+        //dropdown->addItem( it->c_str() );
 
-    }
+    //}
 
 };
 
@@ -94,20 +96,20 @@ void Layout::setEvents() {
 
     //Save click
 
-    connect(
-        _App->getUI()->save_layout_btn,
-        SIGNAL( clicked() ),
-        this,
-        SLOT( handleSaveClick() )
-    );
+    //connect(
+        //_App->getUI()->save_layout_btn,
+        //SIGNAL( clicked() ),
+        //this,
+        //SLOT( handleSaveClick() )
+    //);
 
 
-    connect(
-        _App->getUI()->load_layout_btn,
-        SIGNAL( clicked() ),
-        this,
-        SLOT( handlePresetLoadClick() )
-    );
+    //connect(
+        //_App->getUI()->load_layout_btn,
+        //SIGNAL( clicked() ),
+        //this,
+        //SLOT( handlePresetLoadClick() )
+    //);
 
 };
 
@@ -117,10 +119,10 @@ void Layout::setEvents() {
 
 void Layout::setAppUI() {
 
-    _App->getUI()->horizontalLayout_5->addWidget( _LeftOutput );
-    _App->getUI()->horizontalLayout_5->addWidget( _RightOutput );
+    //_App->getUI()->horizontalLayout_5->addWidget( _LeftOutput );
+    //_App->getUI()->horizontalLayout_5->addWidget( _RightOutput );
 
-    _App->getUI()->input_layout->addWidget( _InputDropdown );
+    //_App->getUI()->input_layout->addWidget( _InputDropdown );
 
 
     //Add layout options
@@ -139,12 +141,12 @@ void Layout::saveLayout() {
 
     std::string layoutName = _PresetName->text().toStdString();
 
-    _LayoutWriter->writeLayoutToFile(
-        layoutName,
-        _App->getServer()->getPatchbay()
-    );
+    //_LayoutWriter->writeLayoutToFile(
+        //layoutName,
+        //_Server->getPatchbay()
+    //);
 
-    _App->getUI()->load_layout_dropdown->addItem( layoutName.c_str() );
+    //_App->getUI()->load_layout_dropdown->addItem( layoutName.c_str() );
 
 };
 
@@ -155,12 +157,12 @@ void Layout::saveLayout() {
 
 void Layout::loadPreset() {
 
-    std::string layoutName = _App->getUI()
-        ->load_layout_dropdown
-        ->currentText()
-        .toStdString();
+    //std::string layoutName = _App->getUI()
+        //->load_layout_dropdown
+        //->currentText()
+        //.toStdString();
 
-    _App->getLayoutLoader()->getCurrent()->loadFromName( layoutName.c_str() );
+    //_App->getLayoutLoader()->getCurrent()->loadFromName( layoutName.c_str() );
 
 };
 
@@ -190,8 +192,7 @@ void Layout::handleInputChange( void * data ) {
 
     const int index = _InputDropdown->currentIndex();
 
-    _App->getServer()
-        ->getPatchbay()
+    _Server->getPatchbay()
         ->getEffects()->clearInputs();
 
 
@@ -206,7 +207,7 @@ void Layout::handleInputChange( void * data ) {
 
     //Change input
 
-    _App->getServer()->
+    _Server->
         getPatchbay()->
         getEffects()->connectInputTo(
             _InputDropdown->getCurrentJackPort()
@@ -227,16 +228,13 @@ void Layout::updateOutputPorts() {
     const int left = _LeftOutput->currentIndex();
     const int right = _RightOutput->currentIndex();
 
-    vector<Jack::Port> ports = _App->getServer()
-        ->getAudio()
+    vector<Jack::Port> ports = _Server->getAudio()
         ->getInputPorts();
 
-    _App->getServer()
-        ->getAudio()
+    _Server->getAudio()
         ->disconnectOutputs();
 
-    _App->getServer()
-        ->getAudio()
+    _Server->getAudio()
         ->connectOutputTo(
             ports[ left ].name,
             ports[ right ].name
@@ -244,4 +242,4 @@ void Layout::updateOutputPorts() {
 
 };
 
-}; }; };
+} }

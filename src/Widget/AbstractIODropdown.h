@@ -9,7 +9,7 @@
 #include "AbstractDropdown.h"
 
 
-namespace Orza { namespace App { namespace Widget {
+namespace Orza { namespace Widget {
 
 
 class AbstractIODropdown : public AbstractDropdown {
@@ -30,4 +30,4 @@ class AbstractIODropdown : public AbstractDropdown {
 
 };
 
-}; }; };
+} }

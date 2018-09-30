@@ -4,10 +4,15 @@
 #include <Jack/Patchbay.h>
 #include <Jack/PatchbayEffects.h>
 
+#include <PluginSearch/LoadedPlugins.h>
+
 #include "Events/RemoveClickEvent.h"
 #include "Events/ActivateClickEvent.h"
 #include "PatchbayPlugin.h"
 #include "Patchbay.h"
+
+
+using Orza::PluginSearch::LoadedPlugins;
 
 
 namespace Orza { namespace Widget {
@@ -16,7 +21,7 @@ Patchbay::Patchbay( Server * server ) :
     _Server( server ),
     _WidgetContent( new QWidget() ),
     _LayoutWidget( new QWidget() ),
-    _Dropdown( new EffectDropdown( app->getPluginSearch() ) ),
+    _Dropdown( new EffectDropdown( LoadedPlugins::getInstance() ) ),
     _Spacer( new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding) )
 {
 

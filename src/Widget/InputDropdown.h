@@ -23,7 +23,7 @@ using std::vector;
 using Audio::Port;
 
 
-namespace Orza { namespace App { namespace Widget {
+namespace Orza { namespace Widget {
 
 
 /**
@@ -128,4 +128,4 @@ class InputDropdown : public AbstractIODropdown, public Util::Dispatcher {
 
 };
 
-}; }; };
+} }

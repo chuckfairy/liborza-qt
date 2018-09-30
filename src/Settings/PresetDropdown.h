@@ -21,7 +21,7 @@ using Audio::Port;
 
 //using Audio::Port;
 
-namespace Orza { namespace App {  namespace Settings {
+namespace Orza { namespace Settings {
 
 /**
  * Main class
@@ -41,4 +41,4 @@ class PresetDropdown : public QComboBox {
 
 };
 
-}; }; };
+} }

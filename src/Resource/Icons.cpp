@@ -5,7 +5,7 @@
 
 #include "Icons.h"
 
-namespace Orza { namespace App { namespace Resource {
+namespace Orza { namespace Resource {
 
 QtAwesome * Icons::AWESOME = nullptr;
 
@@ -53,4 +53,4 @@ QFont Icons::getFont( int size ) {
 
 };
 
-}; }; };
+} }

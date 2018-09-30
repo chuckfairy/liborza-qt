@@ -5,16 +5,12 @@
 #pragma once
 
 #include <Jack/Port.h>
+#include <Jack/Server.h>
 
 #include <QtCore>
 #include <QComboBox>
 
-
-/**
- * Forwading
- */
-
-class MainWindow;
+using Jack::Server;
 
 
 /**
@@ -24,15 +20,11 @@ class MainWindow;
 
 class MidiDeviceDropdown : public QComboBox {
 
-    private:
-
-        MainWindow * _App;
-
 
     public:
 
         MidiDeviceDropdown( QWidget * parent );
-        MidiDeviceDropdown( MainWindow * );
+        MidiDeviceDropdown( Server * );
 
 
         /**
@@ -67,5 +59,10 @@ class MidiDeviceDropdown : public QComboBox {
          * @return bool
          */
         //bool hasMidiDevice( Device device );
+
+
+    private:
+
+        Server * _Server;
 
 };

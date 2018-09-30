@@ -8,7 +8,7 @@
 using Orza::PluginSearch::LoadedPlugins;
 
 
-namespace Orza { namespace App { namespace Widget {
+namespace Orza { namespace Widget {
 
 
 /**
@@ -45,4 +45,4 @@ EffectDropdown::EffectDropdown( LoadedPlugins * plugins ) :
 
 };
 
-} } };
+} }

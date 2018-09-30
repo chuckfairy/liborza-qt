@@ -10,11 +10,11 @@
 #include <LV2/UIDriver.h>
 
 
-using Orza::App::LV2UI::UIDriver;
-using Orza::App::Resource::Icons;
+using Orza::LV2UI::UIDriver;
+using Orza::Resource::Icons;
 
 
-namespace Orza { namespace App { namespace Widget {
+namespace Orza { namespace Widget {
 
 
 /**
@@ -217,4 +217,4 @@ void PatchbayPlugin::handleRemoveClick() {
 
 };
 
-} } };
+} }

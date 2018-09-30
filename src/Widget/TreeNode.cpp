@@ -8,10 +8,10 @@
 
 #include "TreeNode.h"
 
-using Orza::App::Resource::Icons;
+using Orza::Resource::Icons;
 
 
-namespace Orza { namespace App { namespace Widget {
+namespace Orza { namespace Widget {
 
 /**
  * Events
@@ -119,4 +119,4 @@ void TreeNode::handleViewClick() {
 
 };
 
-}; }; };
+} }
