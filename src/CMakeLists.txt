@@ -53,7 +53,7 @@ include_directories(
 file(
     GLOB
     liborza-qt_SRC
-    "${ORZABAL_ROOT_PATH}/lib-src/QtAwesome/*.cpp"
+	"../lib-src/QtAwesome/*.cpp"
     Resource/*.cpp
     main.cpp
     #**/moc_*.cpp
@@ -70,7 +70,7 @@ file(
 
 FILE( GLOB moc_files
     Pi/Layout.h
-    "${ORZABAL_ROOT_PATH}/lib-src/QtAwesome/*.h"
+    "../lib-src/QtAwesome/*.h"
     Widget/AbstractDropdown.h
     Widget/AbstractIODropdown.h
     Widget/InstrumentDropdown.h
