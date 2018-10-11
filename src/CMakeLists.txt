@@ -55,6 +55,7 @@ file(
     liborza-qt_SRC
 	"../lib-src/QtAwesome/*.cpp"
     Resource/*.cpp
+	MidiControl/*.cpp
     main.cpp
     #**/moc_*.cpp
     #*.moc
