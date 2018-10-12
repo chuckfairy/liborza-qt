@@ -50,31 +50,31 @@ namespace Orza { namespace LV2UI {
  */
 
 UIDriver::UIDriver( Jack::Server * s, LV2::UI * ui ) :
-    _Server( s ),
-    _UI( ui ),
-    _pluginAreaWidget( new QWidget )
+	_Server( s ),
+	_UI( ui ),
+	_pluginAreaWidget( new QWidget )
 {
 
-    //Setup area
+	//Setup area
 
-    _UIArea.setupUi( _pluginAreaWidget );
-
-
-
-    //Setup preset dropdown
-
-    _PresetDropdown = new PresetDropdown( ui->getPlugin() );
-
-    _UIArea.preset_layout->addWidget( _PresetDropdown );
+	_UIArea.setupUi( _pluginAreaWidget );
 
 
-    //Start if active
 
-    if ( _UI->getPlugin()->isActive() ) {
+	//Setup preset dropdown
 
-        start();
+	_PresetDropdown = new PresetDropdown( ui->getPlugin() );
 
-    }
+	_UIArea.preset_layout->addWidget( _PresetDropdown );
+
+
+	//Start if active
+
+	if ( _UI->getPlugin()->isActive() ) {
+
+		start();
+
+	}
 
 };
 
@@ -86,13 +86,13 @@ UIDriver::UIDriver( Jack::Server * s, LV2::UI * ui ) :
 
 void UIDriver::start() {
 
-    setupInputPorts();
+	setupInputPorts();
 
-    setupOutputPorts();
+	setupOutputPorts();
 
-    setupMidiPorts();
+	setupMidiPorts();
 
-    createUI();
+	createUI();
 
 };
 
@@ -114,13 +114,13 @@ void UIDriver::stop() {
 
 void UIDriver::update() {
 
-    //Check ports
+	//Check ports
 
-    for( int i = 0; i < portContainer.size(); ++ i ) {
+	for( int i = 0; i < portContainer.size(); ++ i ) {
 
-        updatePort( portContainer[ i ] );
+		updatePort( portContainer[ i ] );
 
-    }
+	}
 
 };
 
@@ -131,11 +131,11 @@ void UIDriver::update() {
 
 void UIDriver::updatePort( PortContainer container ) {
 
-    if( container.port->control != container.controlWidget->getValue() ) {
+	if( container.port->control != container.controlWidget->getValue() ) {
 
-        container.controlWidget->setValue( container.port->control );
+		container.controlWidget->setValue( container.port->control );
 
-    }
+	}
 
 };
 
@@ -146,13 +146,13 @@ void UIDriver::updatePort( PortContainer container ) {
 
 void UIDriver::createUI() {
 
-    _controlWidget = createControlWidget();
+	_controlWidget = createControlWidget();
 
-    _controlWidget->setSizePolicy(
-        QSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding )
-    );
+	_controlWidget->setSizePolicy(
+		QSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding )
+	);
 
-    _UIArea.verticalLayout->addWidget( _controlWidget );
+	_UIArea.verticalLayout->insertWidget( 1, _controlWidget );
 
 };
 
@@ -163,110 +163,110 @@ void UIDriver::createUI() {
 
 QWidget * UIDriver::createControlWidget() {
 
-    LV2::Plugin * _Plugin = _UI->getPlugin();
+	LV2::Plugin * _Plugin = _UI->getPlugin();
 
-    int numPorts = _Plugin->getNumPorts();
+	int numPorts = _Plugin->getNumPorts();
 
-    for( int i = 0; i < _Plugin->getNumPorts(); ++ i ) {
+	for( int i = 0; i < _Plugin->getNumPorts(); ++ i ) {
 
-        LV2::Port * port = (LV2::Port*)_Plugin->getPort( i );
+		LV2::Port * port = (LV2::Port*)_Plugin->getPort( i );
 
 		if( port->type != Audio::TYPE_CONTROL ) { continue; }
 
-        PortContainer container;
-        container.ui = _UI;
-        container.port = port;
-        portContainer.push_back( container );
+		PortContainer container;
+		container.ui = _UI;
+		container.port = port;
+		portContainer.push_back( container );
 
-    }
+	}
 
-    //Main layout
-    QLayout * fullLayout = new QVBoxLayout;
-    QWidget * fullWidget = new QWidget;
-
-
-    //Grid layout for controls
-    QWidget* grid = new QWidget();
-    FlowLayout* flowLayout = new FlowLayout();
-    QLayout * layout = flowLayout;
+	//Main layout
+	QLayout * fullLayout = new QVBoxLayout;
+	QWidget * fullWidget = new QWidget;
 
 
-    //Add dropdown
-
-    _PresetDropdown->load();
-
-    QHBoxLayout * dropdownLayout = new QHBoxLayout;
-
-
-    //Add items
-    fullLayout->addItem( dropdownLayout );
-    fullLayout->addItem( layout );
+	//Grid layout for controls
+	QWidget* grid = new QWidget();
+	FlowLayout* flowLayout = new FlowLayout();
+	QLayout * layout = flowLayout;
 
 
-    //Create knobs for controls
+	//Add dropdown
 
-    LilvNode * lastGroup = NULL;
-    QHBoxLayout * groupLayout;
+	_PresetDropdown->load();
 
-    const LilvPlugin * _lilvPlugin = _Plugin->getLilvPlugin();
-    LilvWorld * _lilvWorld = _Plugin->getLilvWorld();
+	QHBoxLayout * dropdownLayout = new QHBoxLayout;
 
-    LilvNode * pg_group = lilv_new_uri( _lilvWorld, LV2_PORT_GROUPS__group);
-    LilvNode * lv2_name = lilv_new_uri( _lilvWorld, LV2_CORE__name );
-    LilvNode* pprop_notOnGUI = lilv_new_uri( _lilvWorld, LV2_PORT_PROPS__notOnGUI );
 
-    for (int i = 0; i < portContainer.size(); ++i) {
+	//Add items
+	fullLayout->addItem( dropdownLayout );
+	fullLayout->addItem( layout );
 
-        PortContainer * container = &portContainer[i];
-        LV2::Port * port = container->port;
 
-        Control *  control = new Control( *container );
+	//Create knobs for controls
 
-        container->controlWidget = control;
+	LilvNode * lastGroup = NULL;
+	QHBoxLayout * groupLayout;
 
-        LilvNode* group = lilv_port_get(
-            _lilvPlugin,
-            port->lilv_port,
-            pg_group
-        );
+	const LilvPlugin * _lilvPlugin = _Plugin->getLilvPlugin();
+	LilvWorld * _lilvWorld = _Plugin->getLilvWorld();
 
-        if( group ) {
+	LilvNode * pg_group = lilv_new_uri( _lilvWorld, LV2_PORT_GROUPS__group);
+	LilvNode * lv2_name = lilv_new_uri( _lilvWorld, LV2_CORE__name );
+	LilvNode* pprop_notOnGUI = lilv_new_uri( _lilvWorld, LV2_PORT_PROPS__notOnGUI );
 
-            if (!lilv_node_equals(group, lastGroup)) {
+	for (int i = 0; i < portContainer.size(); ++i) {
 
-                /* Group has changed */
+		PortContainer * container = &portContainer[i];
+		LV2::Port * port = container->port;
 
-                LilvNode* groupName = lilv_world_get( _lilvWorld, group, lv2_name, NULL );
+		Control *  control = new Control( *container );
 
-                QGroupBox* groupBox = new QGroupBox(lilv_node_as_string(groupName));
+		container->controlWidget = control;
 
-                groupLayout = new QHBoxLayout();
-                groupBox->setLayout(groupLayout);
-                layout->addWidget(groupBox);
+		LilvNode* group = lilv_port_get(
+			_lilvPlugin,
+			port->lilv_port,
+			pg_group
+		);
 
-            }
+		if( group ) {
 
-            groupLayout->addWidget( control );
+			if (!lilv_node_equals(group, lastGroup)) {
 
-        } else {
+				/* Group has changed */
 
-            layout->addWidget( (QGroupBox*) control );
+				LilvNode* groupName = lilv_world_get( _lilvWorld, group, lv2_name, NULL );
 
-        }
+				QGroupBox* groupBox = new QGroupBox(lilv_node_as_string(groupName));
 
-        lastGroup = group;
+				groupLayout = new QHBoxLayout();
+				groupBox->setLayout(groupLayout);
+				layout->addWidget(groupBox);
 
-        uint32_t index = lilv_port_get_index( _lilvPlugin, port->lilv_port );
+			}
 
-        port->widget = control;
+			groupLayout->addWidget( control );
 
-    }
+		} else {
 
-    fullWidget->setLayout( fullLayout );
+			layout->addWidget( (QGroupBox*) control );
 
-    lilv_node_free( pprop_notOnGUI );
+		}
 
-    return fullWidget;
+		lastGroup = group;
+
+		uint32_t index = lilv_port_get_index( _lilvPlugin, port->lilv_port );
+
+		port->widget = control;
+
+	}
+
+	fullWidget->setLayout( fullLayout );
+
+	lilv_node_free( pprop_notOnGUI );
+
+	return fullWidget;
 
 };
 
@@ -277,81 +277,81 @@ QWidget * UIDriver::createControlWidget() {
 
 void UIDriver::setupInputPorts() {
 
-    Audio::Plugin * p = (Audio::Plugin*) _UI->getPlugin();
+	Audio::Plugin * p = (Audio::Plugin*) _UI->getPlugin();
 
-    if( ! p->hasInputs() ) {
+	if( ! p->hasInputs() ) {
 
-        _UIArea.input_groupbox->hide();
+		_UIArea.input_groupbox->hide();
 
-        return;
+		return;
 
-    }
+	}
 
 
-    //Setup dropdowns
+	//Setup dropdowns
 
-    vector<long> * inputs = p->getInputPorts();
-    vector<long>::iterator it;
+	vector<long> * inputs = p->getInputPorts();
+	vector<long>::iterator it;
 
-    for( it = inputs->begin(); it != inputs->end(); ++ it ) {
+	for( it = inputs->begin(); it != inputs->end(); ++ it ) {
 
-        Audio::Port * port = p->getPort( (*it) );
+		Audio::Port * port = p->getPort( (*it) );
 
-        IOPortChanger * changer = new IOPortChanger(
-            _Server,
-            (Jack::Port*) port
-        );
+		IOPortChanger * changer = new IOPortChanger(
+			_Server,
+			(Jack::Port*) port
+		);
 
-        _UIArea.input_layout->addWidget( changer->getWidget() );
+		_UIArea.input_layout->addWidget( changer->getWidget() );
 
-    }
+	}
 
 };
 
 void UIDriver::setupOutputPorts() {
 
-    Audio::Plugin * p = (Audio::Plugin*) _UI->getPlugin();
+	Audio::Plugin * p = (Audio::Plugin*) _UI->getPlugin();
 
-    if( ! p->hasOutputs() ) {
+	if( ! p->hasOutputs() ) {
 
-        _UIArea.output_groupbox->hide();
+		_UIArea.output_groupbox->hide();
 
-        return;
+		return;
 
-    }
+	}
 
 
-    //Setup dropdowns
+	//Setup dropdowns
 
-    vector<long> * outputs = p->getOutputPorts();
-    vector<long>::iterator it;
+	vector<long> * outputs = p->getOutputPorts();
+	vector<long>::iterator it;
 
-    for( it = outputs->begin(); it != outputs->end(); ++ it ) {
+	for( it = outputs->begin(); it != outputs->end(); ++ it ) {
 
-        Audio::Port * port = p->getPort( (*it) );
+		Audio::Port * port = p->getPort( (*it) );
 
-        IOPortChanger * changer = new IOPortChanger(
-            _Server,
-            (Jack::Port*) port
-        );
+		IOPortChanger * changer = new IOPortChanger(
+			_Server,
+			(Jack::Port*) port
+		);
 
-        _UIArea.output_layout->addWidget( changer->getWidget() );
+		_UIArea.output_layout->addWidget( changer->getWidget() );
 
-    }
+	}
 
 };
 
 void UIDriver::setupMidiPorts() {
 
-    Audio::Plugin * p = (Audio::Plugin*) _UI->getPlugin();
+	Audio::Plugin * p = (Audio::Plugin*) _UI->getPlugin();
 
-    //if( ! p->hasMidi() ) {
+	//if( ! p->hasMidi() ) {
 
-        _UIArea.midi_groupbox->hide();
+		_UIArea.midi_groupbox->hide();
 
-        return;
+		return;
 
-    //}
+	//}
 
 };
 
