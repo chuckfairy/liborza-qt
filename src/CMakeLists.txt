@@ -44,6 +44,7 @@ include_directories(
     "../lib-src"
     "../../liborza/lib-src"
     "../../liborza/src"
+	"${CMAKE_CURRENT_BINARY_DIR}/../../liborza/src"
 
     ${Boost_INCLUDE_DIR}
 )
@@ -76,6 +77,7 @@ FILE( GLOB moc_files
     Widget/AbstractIODropdown.h
     Widget/InstrumentDropdown.h
     Widget/Patchbay.h
+    Widget/MidiNoteDropdown.h
     Widget/PatchbayPlugin.h
     Widget/SimpleLayout.h
     Widget/SingleInstrument.h
