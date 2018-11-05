@@ -39,6 +39,9 @@ class TreeNode : public QWidget, public Util::Dispatcher {
          * Repo
          */
 
+        template<typename P, typename C>
+        void addNodeAny( C * node );
+
         void addNode( TreeNode * node );
 
         void remove( TreeNode * node );
@@ -82,9 +85,6 @@ class TreeNode : public QWidget, public Util::Dispatcher {
         TreeNode() : QWidget() {};
         ~TreeNode() {};
 
-
-    private:
-
         Util::Repository<TreeNode> _nodes;
 
 
@@ -92,6 +92,8 @@ class TreeNode : public QWidget, public Util::Dispatcher {
         QPushButton * delete_btn = nullptr;
 
         QWidget * viewContent;
+
+        virtual void afterRemove() {};
 
 };
 

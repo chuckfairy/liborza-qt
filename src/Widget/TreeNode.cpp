@@ -41,6 +41,8 @@ void TreeNode::remove( TreeNode * node ) {
 
     delete node;
 
+    afterRemove();
+
 };
 
 
