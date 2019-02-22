@@ -12,3 +12,4 @@ FORMS    += src/MidiControl/ControlPortValue.ui\
         src/Widget/PatchBay.ui\
         src/Widget/PatchBayItem.ui\
 	src/LV2/PluginArea.ui\
+        src/Settings/SettingsLayout.ui\
