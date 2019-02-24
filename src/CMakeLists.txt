@@ -20,6 +20,7 @@ file(GLOB liborza-qt_UIS
     MidiControl/Control.ui
     MidiControl/ControlPort.ui
     MidiControl/ControlPortValue.ui
+	Settings/SettingsLayout.ui
 )
 
 #file(GLOB common-ladspa ../common/LADSPA/*.cpp)

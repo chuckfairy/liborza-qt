@@ -37,7 +37,9 @@ Layout::Layout( Server * win ) :
     _PresetName( new Widget::BaseLineEdit )
 {
 
-    //_App->getUI()->preset_save_layout->insertWidget( 0, _PresetName );
+	_UI.setupUi(this);
+
+    _UI.preset_save_layout->insertWidget( 0, _PresetName );
 
     setDropdowns();
     setEvents();
@@ -65,7 +67,7 @@ void Layout::setDropdowns() {
 
     //Settings
 
-    //QComboBox * dropdown = _App->getUI()->load_layout_dropdown;
+    QComboBox * dropdown = _UI.load_layout_dropdown;
 
     //vector<string> fileNames = _App->getLayoutLoader()->getFileNames();
 
@@ -96,20 +98,20 @@ void Layout::setEvents() {
 
     //Save click
 
-    //connect(
-        //_App->getUI()->save_layout_btn,
-        //SIGNAL( clicked() ),
-        //this,
-        //SLOT( handleSaveClick() )
-    //);
+    connect(
+        _UI.save_layout_btn,
+        SIGNAL( clicked() ),
+        this,
+        SLOT( handleSaveClick() )
+    );
 
 
-    //connect(
-        //_App->getUI()->load_layout_btn,
-        //SIGNAL( clicked() ),
-        //this,
-        //SLOT( handlePresetLoadClick() )
-    //);
+    connect(
+        _UI.load_layout_btn,
+        SIGNAL( clicked() ),
+        this,
+        SLOT( handlePresetLoadClick() )
+    );
 
 };
 
@@ -119,10 +121,9 @@ void Layout::setEvents() {
 
 void Layout::setAppUI() {
 
-    //_App->getUI()->horizontalLayout_5->addWidget( _LeftOutput );
-    //_App->getUI()->horizontalLayout_5->addWidget( _RightOutput );
-
-    //_App->getUI()->input_layout->addWidget( _InputDropdown );
+    _UI.horizontalLayout_5->addWidget( _LeftOutput );
+    _UI.horizontalLayout_5->addWidget( _RightOutput );
+    _UI.input_layout->addWidget( _InputDropdown );
 
 
     //Add layout options
@@ -146,7 +147,7 @@ void Layout::saveLayout() {
         //_Server->getPatchbay()
     //);
 
-    //_App->getUI()->load_layout_dropdown->addItem( layoutName.c_str() );
+    _UI.load_layout_dropdown->addItem( layoutName.c_str() );
 
 };
 
@@ -157,10 +158,9 @@ void Layout::saveLayout() {
 
 void Layout::loadPreset() {
 
-    //std::string layoutName = _App->getUI()
-        //->load_layout_dropdown
-        //->currentText()
-        //.toStdString();
+    std::string layoutName = _UI.load_layout_dropdown
+        ->currentText()
+        .toStdString();
 
     //_App->getLayoutLoader()->getCurrent()->loadFromName( layoutName.c_str() );
 

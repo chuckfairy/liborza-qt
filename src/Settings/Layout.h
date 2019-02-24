@@ -6,12 +6,14 @@
 #include <QtCore>
 #include <QWidget>
 
-//#include <Layouts/LayoutWriter.h>
+#include <Layouts/LayoutWriter.h>
 #include <Jack/Server.h>
 
 #include <Widget/OutputDropdown.h>
 #include <Widget/InputDropdown.h>
 #include <Widget/BaseLineEdit.h>
+
+#include <ui_SettingsLayout.h>
 
 
 using Orza::Widget::InputDropdown;
@@ -34,75 +36,81 @@ class Layout : public QWidget {
     Q_OBJECT;
 
 
-    public:
+	public:
 
-        Layout( Server * );
+		Layout( Server * );
 
-        void updateOutputPorts();
+		void updateOutputPorts();
 
-        /**
-         * Save preset layout
-         */
+		/**
+		 * Save preset layout
+		 */
 
-        void saveLayout();
+		void saveLayout();
 
-        void loadPreset();
+		void loadPreset();
 
-        InputDropdown * getInputDropdown() {
+		InputDropdown * getInputDropdown() {
 
-            return _InputDropdown;
+			return _InputDropdown;
 
-        };
-
-
-        /**
-         * Input change handle
-         */
-
-        void handleInputChange( void * data );
+		};
 
 
-    public slots:
+		/**
+		 * Input change handle
+		 */
 
-        void handleSaveClick();
-
-        void handlePresetLoadClick();
-
-
-    private:
-
-        Server * _Server;
-
-        //Orza::App::Layouts::LayoutWriter * _LayoutWriter;
-
-        /**
-         * Widget dropdowns
-         */
-
-        OutputDropdown * _LeftOutput;
-        OutputDropdown * _RightOutput;
-
-        InputDropdown * _InputDropdown;
-
-        Widget::BaseLineEdit * _PresetName;
+		void handleInputChange( void * data );
 
 
-        /**
-         * Main event
-         */
+	public slots:
 
-        Util::Event * _Event;
+		void handleSaveClick();
+
+		void handlePresetLoadClick();
 
 
-        /**
-         * Private setters for cleaniness
-         */
+	private:
 
-        void setDropdowns();
+		Server * _Server;
 
-        void setEvents();
+		/**
+		 * UI
+		 */
 
-        void setAppUI();
+		Ui_SettingsLayout _UI;
+
+        Orza::App::Layouts::LayoutWriter * _LayoutWriter;
+
+		/**
+		 * Widget dropdowns
+		 */
+
+		OutputDropdown * _LeftOutput;
+		OutputDropdown * _RightOutput;
+
+		InputDropdown * _InputDropdown;
+
+		Widget::BaseLineEdit * _PresetName;
+
+
+		/**
+		 * Main event
+		 */
+
+		Util::Event * _Event;
+
+
+		/**
+		 * Private setters for cleaniness
+		 */
+
+		void setDropdowns();
+
+		void setEvents();
+
+		void setAppUI();
 
 };
 
