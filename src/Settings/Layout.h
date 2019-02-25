@@ -39,6 +39,7 @@ class Layout : public QWidget {
 	public:
 
 		Layout( Server * );
+		Layout( Server *, Orza::Layouts::LayoutWriter * );
 
 		void updateOutputPorts();
 
@@ -81,7 +82,7 @@ class Layout : public QWidget {
 
 		Ui_SettingsLayout _UI;
 
-        Orza::App::Layouts::LayoutWriter * _LayoutWriter;
+        Orza::Layouts::LayoutWriter * _LayoutWriter;
 
 		/**
 		 * Widget dropdowns

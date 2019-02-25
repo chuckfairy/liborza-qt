@@ -1,17 +1,17 @@
 /**
  * Qt layout loader impl
  */
-//#include <Config/Defaults.h>
+#include <Config/Defaults.h>
 
 //#include <Effect/EffectLayout.h>
 
-//#include "InstrumentEffect/InstrumentEffect.h"
+//#include <InstrumentEffect/InstrumentEffect.h>
 
 
 #include "LayoutLoader.h"
 
 
-namespace Orza { namespace App { namespace Layouts {
+namespace Orza { namespace Layouts {
 
 
 /**
@@ -68,4 +68,4 @@ void LayoutLoader::load( json * setting ) {
 
 };
 
-}; }; };
+}; };

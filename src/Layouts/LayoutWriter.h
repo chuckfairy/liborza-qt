@@ -19,7 +19,7 @@ using std::vector;
 using nlohmann::json;
 
 
-namespace Orza { namespace App { namespace Layouts {
+namespace Orza { namespace Layouts {
 
 class LayoutWriter : public Audio::PatchbayPresetWriter {
 
@@ -66,4 +66,4 @@ class LayoutWriter : public Audio::PatchbayPresetWriter {
 
 };
 
-}; }; };
+}; };

@@ -35,16 +35,24 @@ qt5_add_resources(RESOURCES ./Resources.qrc)
 #FIND_PACKAGE(Boost)
 find_package( Boost 1.45.0 COMPONENTS filesystem regex )
 
+message("PATH", "${LIBORZAQT_ROOT_PATH}/../liborza/lib-src")
+
 include_directories(
     ${CMAKE_CURRENT_BINARY_DIR}
     ../common /usr/local/lib
 
-    "${ORZABAL_ROOT_PATH}/src"
-    "${ORZABAL_ROOT_PATH}/src/common/Audio"
+    "${LIBORZAQT_ROOT_PATH}/../liborza/lib-src"
+    "${LIBORZA_ROOT_PATH}/lib-src"
+    "${LIBORZA_ROOT_PATH}/src/common/Audio"
+	"${LIBORZAQT_ROOT_PATH}/../liborza/lib-src/json"
+
+	${LIBORZA_LIB_PATH}
 
     "../lib-src"
     "../../liborza/lib-src"
     "../../liborza/src"
+	"${CMAKE_CURRENT_BINARY_DIR}/../../liborza/lib-src"
+	"${CMAKE_CURRENT_BINARY_DIR}/../../liborza/lib-src/json"
 	"${CMAKE_CURRENT_BINARY_DIR}/../../liborza/src"
 
     ${Boost_INCLUDE_DIR}

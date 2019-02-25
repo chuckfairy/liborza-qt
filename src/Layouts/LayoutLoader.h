@@ -22,7 +22,7 @@ using Jack::Server;
 using nlohmann::json;
 
 
-namespace Orza { namespace App { namespace Layouts {
+namespace Orza { namespace Layouts {
 
 class LayoutLoader : public Audio::PatchbayPresetLoader {
 
@@ -64,4 +64,4 @@ class LayoutLoader : public Audio::PatchbayPresetLoader {
 
 };
 
-}; }; };
+}; };

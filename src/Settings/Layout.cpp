@@ -32,8 +32,13 @@ namespace Orza { namespace Settings {
  */
 
 Layout::Layout( Server * win ) :
+	Layout::Layout( win, new Orza::Layouts::LayoutWriter )
+{
+}
+
+Layout::Layout( Server * win,  Orza::Layouts::LayoutWriter * writer ) :
     _Server( win ),
-    //_LayoutWriter( new Orza::Layouts::LayoutWriter ),
+	_LayoutWriter( writer ),
     _PresetName( new Widget::BaseLineEdit )
 {
 
@@ -142,10 +147,10 @@ void Layout::saveLayout() {
 
     std::string layoutName = _PresetName->text().toStdString();
 
-    //_LayoutWriter->writeLayoutToFile(
-        //layoutName,
-        //_Server->getPatchbay()
-    //);
+	_LayoutWriter->writeLayoutToFile(
+		layoutName,
+		_Server->getPatchbay()
+	);
 
     _UI.load_layout_dropdown->addItem( layoutName.c_str() );
 
@@ -225,8 +230,8 @@ void Layout::handleInputChange( void * data ) {
 
 void Layout::updateOutputPorts() {
 
-    const int left = _LeftOutput->currentIndex();
-    const int right = _RightOutput->currentIndex();
+    const int left = _LeftOutput->currentIndex() - 1;
+    const int right = _RightOutput->currentIndex() - 1;
 
     vector<Jack::Port> ports = _Server->getAudio()
         ->getInputPorts();
