@@ -22,6 +22,8 @@
 
 using std::vector;
 
+using Audio::Plugin;
+
 
 namespace Orza { namespace Widget {
 
@@ -74,7 +76,7 @@ class AbstractPluginDropdown :
          * @TODO This will assume there is a index 0 of a placeholder
          */
 
-        Audio::Plugin * getCurrentPlugin() {
+        Plugin * getCurrentPlugin() {
 
             int index = currentIndex() - 1;
 
@@ -89,7 +91,7 @@ class AbstractPluginDropdown :
          * Instrument struct list
          *
          */
-        vector<Audio::Plugin*> _plugins;
+        vector<Plugin*> _plugins;
         vector<const InstrumentOption*> _dropdownOptions;
 
 

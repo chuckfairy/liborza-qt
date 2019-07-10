@@ -12,16 +12,19 @@
 #include <Jack/Patchbay.h>
 #include <Jack/PatchbayEffects.h>
 #include <Jack/PluginRepository.h>
+#include <Jack/Plugin.h>
 
 
 using std::string;
 using std::vector;
 using nlohmann::json;
+using Audio::PatchbayPresetWriter;
+using Audio::Plugin;
 
 
 namespace Orza { namespace Layouts {
 
-class LayoutWriter : public Audio::PatchbayPresetWriter {
+class LayoutWriter : public PatchbayPresetWriter {
 
     public:
 
@@ -49,9 +52,9 @@ class LayoutWriter : public Audio::PatchbayPresetWriter {
             //Effects list json array
             //@TODO better typing
 
-            vector<Jack::Plugin*> repo = p->getEffects()->getRepo()->getAll();
+            vector<::Jack::Plugin*> repo = p->getEffects()->getRepo()->getAll();
 
-            vector<Audio::Plugin*> plugins( repo.begin(), repo.end() );
+            vector<Plugin*> plugins( repo.begin(), repo.end() );
 
             output["effects"] = getJSON(
                 plugins

@@ -13,6 +13,7 @@
 
 
 using Orza::PluginSearch::LoadedPlugins;
+using Audio::Plugin;
 
 
 namespace Orza { namespace Widget {
@@ -65,7 +66,7 @@ void Patchbay::handleAddClick() {
 
     //Create patchbay plugin ui
 
-    Audio::Plugin * p = _Dropdown->getCurrentPlugin()->clone();
+    Plugin * p = _Dropdown->getCurrentPlugin()->clone();
 
     addPlugin( p );
 
@@ -76,7 +77,7 @@ void Patchbay::handleAddClick() {
  * Add plugin
  */
 
-void Patchbay::addPlugin( Audio::Plugin * p ) {
+void Patchbay::addPlugin( Plugin * p ) {
 
     Jack::Patchbay * h = _Server->getPatchbay();
 

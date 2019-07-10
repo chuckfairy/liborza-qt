@@ -6,12 +6,13 @@
 #include <QtCore>
 #include <QWidget>
 
-#include <Layouts/LayoutWriter.h>
 #include <Jack/Server.h>
 
 #include <Widget/OutputDropdown.h>
 #include <Widget/InputDropdown.h>
 #include <Widget/BaseLineEdit.h>
+
+#include <Layouts/LayoutWriter.h>
 
 #include <ui_SettingsLayout.h>
 
@@ -82,7 +83,7 @@ class Layout : public QWidget {
 
 		Ui_SettingsLayout _UI;
 
-        Orza::Layouts::LayoutWriter * _LayoutWriter;
+		Orza::Layouts::LayoutWriter * _LayoutWriter;
 
 		/**
 		 * Widget dropdowns

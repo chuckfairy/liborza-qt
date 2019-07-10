@@ -11,6 +11,7 @@
 #include <Jack/Server.h>
 
 #include <ui_PatchBay.h>
+#include <Audio/Plugin.h>
 
 #include "EffectDropdown.h"
 
@@ -18,6 +19,7 @@
 using std::vector;
 
 using Jack::Server;
+using Audio::Plugin;
 
 
 namespace Orza { namespace Widget {
@@ -50,7 +52,7 @@ class Patchbay : public QWidget {
 
         void clearPlugins();
 
-        void addPlugin( Audio::Plugin * );
+        void addPlugin( Plugin * );
 
 
         /**
