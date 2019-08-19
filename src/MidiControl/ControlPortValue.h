@@ -23,6 +23,10 @@
 #include <Jack/Midi.h>
 
 
+using Audio::MidiControlRange;
+using Audio::PluginPortContainer;
+
+
 namespace Orza { namespace MidiControl {
 
 
@@ -36,7 +40,7 @@ class ControlPortValue : public Widget::TreeNode {
 
 	public:
 
-		explicit ControlPortValue( Jack::Midi *, Jack::MidiControlPort *, Audio::PluginPortContainer * );
+		explicit ControlPortValue( Jack::Midi *, Jack::MidiControlPort *, PluginPortContainer * );
 
 		void setRange( float start, float end );
 
@@ -74,9 +78,9 @@ class ControlPortValue : public Widget::TreeNode {
 
 		Jack::MidiControlPort * _ControlPort;
 
-		Audio::PluginPortContainer * _PortContainer;
+		PluginPortContainer * _PortContainer;
 
-		Audio::MidiControlRange<Jack::MidiControlPort> * _ControlRange;
+		MidiControlRange<Jack::MidiControlPort> * _ControlRange;
 
 		void updateRange();
 

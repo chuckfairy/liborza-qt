@@ -23,6 +23,7 @@
 
 
 using Jack::Server;
+using Audio::PluginPortContainer;
 
 
 namespace Orza { namespace MidiControl {
@@ -73,7 +74,7 @@ class ControlPort : public Widget::TreeNode {
 		 * @TODO remove double vector
 		 */
 
-		vector<Audio::PluginPortContainer*> _PortContainers;
+		vector<PluginPortContainer*> _PortContainers;
 
 		vector<ControlPortValue*> _UIPortValues;
 

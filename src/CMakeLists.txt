@@ -97,6 +97,7 @@ FILE( GLOB moc_files
     LV2/PresetDropdown.h
     LV2/WindowLayout.h
     Settings/Layout.h
+	MidiControl/*.h
 )
 
 QT5_WRAP_CPP( MY_MOCED_FILES ${moc_files} )

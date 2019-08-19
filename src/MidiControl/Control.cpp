@@ -48,6 +48,8 @@ void Control::addControlPort() {
 
 	_UI.scroll_layout->addWidget( uiPort );
 
+	std::cout <<"EHLPERWER\n\n";
+
 
 	//set events
 
