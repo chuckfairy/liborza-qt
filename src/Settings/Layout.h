@@ -34,7 +34,7 @@ namespace Orza { namespace Settings {
 
 class Layout : public QWidget {
 
-    Q_OBJECT;
+	Q_OBJECT;
 
 
 	public:

@@ -7,6 +7,7 @@
 
 #include <json/json.hpp>
 
+#include <Audio/Patchbay.h>
 #include <Audio/PatchbayPresetWriter.h>
 #include <Util/File.h>
 #include <Jack/Patchbay.h>
@@ -20,53 +21,58 @@ using std::vector;
 using nlohmann::json;
 using Audio::PatchbayPresetWriter;
 using Audio::Plugin;
+using Audio::Patchbay;
 
 
 namespace Orza { namespace Layouts {
 
 class LayoutWriter : public PatchbayPresetWriter {
 
-    public:
+	public:
 
-         LayoutWriter() {};
-         ~LayoutWriter() {};
+		 LayoutWriter() {};
+		 ~LayoutWriter() {};
 
-         /**
-          * @TODO
-          */
+		 /**
+		  * @TODO
+		  */
+		void writeLayoutToFile( string fileName, Patchbay * p ) {
 
-        void writeLayoutToFile( string fileName, Jack::Patchbay * p ) {
+			json output = getPatchbayJSON( fileName, p );
 
-            json output;
+			//Save json
 
-            output["layout"] = "simple";
+			saveToFile( fileName.c_str(), output );
 
-            output["name"] = fileName;
+		};
 
+		json getPatchbayJSON( string fileName, Patchbay * p) {
 
-            //Instruments json array
+			json output;
 
-            output["instruments"] = getJSON( p->getActivePlugins() );
+			output["layout"] = "simple";
 
-
-            //Effects list json array
-            //@TODO better typing
-
-            vector<::Jack::Plugin*> repo = p->getEffects()->getRepo()->getAll();
-
-            vector<Plugin*> plugins( repo.begin(), repo.end() );
-
-            output["effects"] = getJSON(
-                plugins
-            );
+			output["name"] = fileName;
 
 
-            //Save json
+			//Instruments json array
 
-            saveToFile( fileName.c_str(), output );
+			output["instruments"] = getJSON( p->getActivePlugins() );
 
-        };
 
+			//Effects list json array
+			//@TODO better typing
+
+			Jack::PatchbayEffects * patch = (Jack::PatchbayEffects*) p->getEffects();
+			vector<Plugin*> repo = patch->getRepo()->getAll();
+
+			vector<Plugin*> plugins( repo.begin(), repo.end() );
+
+			output["effects"] = getJSON( plugins );
+
+			return output;
+
+		}
 };
 
 }; };

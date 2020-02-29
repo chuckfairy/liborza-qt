@@ -17,10 +17,11 @@
 
 #include <Jack/Server.h>
 
-
-using Jack::Server;
 using nlohmann::json;
 
+using Jack::Server;
+
+using Audio::PatchbayPresetLoader;
 
 namespace Orza { namespace Layouts {
 
@@ -38,29 +39,10 @@ class LayoutLoader : public Audio::PatchbayPresetLoader {
 
         void load( json * );
 
-        void loadLayout( const char * type );
-
-        void loadLayout( Layout * );
-
-
-        /**
-         * Getters
-         */
-
-        Layout * getCurrent() {
-
-            return _CurrentLayout;
-
-        };
-
 
     private:
 
         Server * _Server;
-
-        Layout * _CurrentLayout;
-
-        LayoutRepository _Repo;
 
 };
 

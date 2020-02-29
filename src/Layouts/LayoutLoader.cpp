@@ -26,18 +26,6 @@ LayoutLoader::LayoutLoader( Server * app ) :
 
     Layout * defaultLayout;
 
-    //if( Config::DEFAULT_LAYOUT == "InstrumentEffect" ) {
-
-        //defaultLayout = new InstrumentEffect( _App );
-
-    //} else {
-
-        //defaultLayout = new EffectLayout( _App );
-
-    //}
-
-    _Repo.add( defaultLayout );
-
     loadLayout( defaultLayout );
 
 };

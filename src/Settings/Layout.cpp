@@ -37,21 +37,20 @@ Layout::Layout( Server * win ) :
 }
 
 Layout::Layout( Server * win,  Orza::Layouts::LayoutWriter * writer ) :
-    _Server( win ),
+	_Server( win ),
 	_LayoutWriter( writer ),
-    _PresetName( new Widget::BaseLineEdit )
+	_PresetName( new Widget::BaseLineEdit )
 {
 
 	_UI.setupUi(this);
 
-    _UI.preset_save_layout->insertWidget( 0, _PresetName );
+	_UI.preset_save_layout->insertWidget( 0, _PresetName );
 
-    setDropdowns();
-    setEvents();
-    setAppUI();
+	setDropdowns();
+	setEvents();
+	setAppUI();
 
 };
-
 
 
 /**
@@ -60,65 +59,65 @@ Layout::Layout( Server * win,  Orza::Layouts::LayoutWriter * writer ) :
 
 void Layout::setDropdowns() {
 
-    _LeftOutput = new OutputDropdown( _Server );
-    _RightOutput = new OutputDropdown( _Server );
+	_LeftOutput = new OutputDropdown( _Server );
+	_RightOutput = new OutputDropdown( _Server );
 
-    _LeftOutput->setCurrentIndex( 1 );
-    _RightOutput->setCurrentIndex( 2 );
+	_LeftOutput->setCurrentIndex( 1 );
+	_RightOutput->setCurrentIndex( 2 );
 
-    _InputDropdown = new InputDropdown( _Server );
+	_InputDropdown = new InputDropdown( _Server );
 
 
 
-    //Settings
+	//Settings
 
-    QComboBox * dropdown = _UI.load_layout_dropdown;
+	QComboBox * dropdown = _UI.load_layout_dropdown;
 
-    //vector<string> fileNames = _App->getLayoutLoader()->getFileNames();
+	//vector<string> fileNames = _App->getLayoutLoader()->getFileNames();
 
-    //vector<string>::const_iterator it;
+	//vector<string>::const_iterator it;
 
-    //for( it = fileNames.begin(); it < fileNames.end(); ++ it ) {
+	//for( it = fileNames.begin(); it < fileNames.end(); ++ it ) {
 
-        //dropdown->addItem( it->c_str() );
+		//dropdown->addItem( it->c_str() );
 
-    //}
+	//}
 
 };
 
 
 void Layout::setEvents() {
 
-    //Output changing
+	//Output changing
 
-    _Event = (Util::Event*) new OutputChangeEvent( this );
+	_Event = (Util::Event*) new OutputChangeEvent( this );
 
-    _LeftOutput->on( OutputDropdown::CHANGE_EVENT, _Event );
-    _RightOutput->on( OutputDropdown::CHANGE_EVENT, _Event );
+	_LeftOutput->on( OutputDropdown::CHANGE_EVENT, _Event );
+	_RightOutput->on( OutputDropdown::CHANGE_EVENT, _Event );
 
-    Util::Event * inputEvent = new InputChangeEvent<Layout>( this );
+	Util::Event * inputEvent = new InputChangeEvent<Layout>( this );
 
-    _InputDropdown->on( InputDropdown::CHANGE_EVENT, inputEvent );
-
-
-    //Save click
-
-    connect(
-        _UI.save_layout_btn,
-        SIGNAL( clicked() ),
-        this,
-        SLOT( handleSaveClick() )
-    );
+	_InputDropdown->on( InputDropdown::CHANGE_EVENT, inputEvent );
 
 
-    connect(
-        _UI.load_layout_btn,
-        SIGNAL( clicked() ),
-        this,
-        SLOT( handlePresetLoadClick() )
-    );
+	//Save click
+
+	connect(
+		_UI.save_layout_btn,
+		SIGNAL( clicked() ),
+		this,
+		SLOT( handleSaveClick() )
+	);
+
+	connect(
+		_UI.load_layout_btn,
+		SIGNAL( clicked() ),
+		this,
+		SLOT( handlePresetLoadClick() )
+	);
 
 };
+
 
 /**
  * App UI setting
@@ -126,15 +125,15 @@ void Layout::setEvents() {
 
 void Layout::setAppUI() {
 
-    _UI.horizontalLayout_5->addWidget( _LeftOutput );
-    _UI.horizontalLayout_5->addWidget( _RightOutput );
-    _UI.input_layout->addWidget( _InputDropdown );
+	_UI.horizontalLayout_5->addWidget( _LeftOutput );
+	_UI.horizontalLayout_5->addWidget( _RightOutput );
+	_UI.input_layout->addWidget( _InputDropdown );
 
 
-    //Add layout options
-    //@TODO
+	//Add layout options
+	//@TODO
 
-    //_App->getUI()->load_
+	//_App->getUI()->load_
 
 };
 
@@ -145,14 +144,14 @@ void Layout::setAppUI() {
 
 void Layout::saveLayout() {
 
-    std::string layoutName = _PresetName->text().toStdString();
+	std::string layoutName = _PresetName->text().toStdString();
 
 	_LayoutWriter->writeLayoutToFile(
 		layoutName,
 		_Server->getPatchbay()
 	);
 
-    _UI.load_layout_dropdown->addItem( layoutName.c_str() );
+	_UI.load_layout_dropdown->addItem( layoutName.c_str() );
 
 };
 
@@ -163,11 +162,11 @@ void Layout::saveLayout() {
 
 void Layout::loadPreset() {
 
-    std::string layoutName = _UI.load_layout_dropdown
-        ->currentText()
-        .toStdString();
+	std::string layoutName = _UI.load_layout_dropdown
+		->currentText()
+		.toStdString();
 
-    //_App->getLayoutLoader()->getCurrent()->loadFromName( layoutName.c_str() );
+	//_App->getLayoutLoader()->getCurrent()->loadFromName( layoutName.c_str() );
 
 };
 
@@ -178,13 +177,13 @@ void Layout::loadPreset() {
 
 void Layout::handleSaveClick() {
 
-    saveLayout();
+	saveLayout();
 
 };
 
 void Layout::handlePresetLoadClick() {
 
-    loadPreset();
+	loadPreset();
 
 };
 
@@ -195,31 +194,31 @@ void Layout::handlePresetLoadClick() {
 
 void Layout::handleInputChange( void * data ) {
 
-    const int index = _InputDropdown->currentIndex();
+	const int index = _InputDropdown->currentIndex();
 
-    _Server->getPatchbay()
-        ->getEffects()->clearInputs();
-
-
-    //Clear all if 0 or none
-
-    if( index == 0 ) {
-
-        return;
-
-    }
+	_Server->getPatchbay()
+		->getEffects()->clearInputs();
 
 
-    //Change input
+	//Clear all if 0 or none
 
-    _Server->
-        getPatchbay()->
-        getEffects()->connectInputTo(
-            _InputDropdown->getCurrentJackPort()
-    );
+	if( index == 0 ) {
 
-    std::cout << "Connected to "
-        <<_InputDropdown->getCurrentJackPort() << "\n";
+		return;
+
+	}
+
+
+	//Change input
+	//@TODO
+	Jack::PatchbayEffects * effects = (Jack::PatchbayEffects*) _Server->getPatchbay()->getEffects();
+
+	effects->connectInputTo(
+		_InputDropdown->getCurrentJackPort()
+	);
+
+	std::cout << "Connected to "
+		<<_InputDropdown->getCurrentJackPort() << "\n";
 
 };
 
@@ -230,20 +229,20 @@ void Layout::handleInputChange( void * data ) {
 
 void Layout::updateOutputPorts() {
 
-    const int left = _LeftOutput->currentIndex() - 1;
-    const int right = _RightOutput->currentIndex() - 1;
+	const int left = _LeftOutput->currentIndex() - 1;
+	const int right = _RightOutput->currentIndex() - 1;
 
-    vector<Jack::Port> ports = _Server->getAudio()
-        ->getInputPorts();
+	vector<Jack::Port> ports = _Server->getAudio()
+		->getInputPorts();
 
-    _Server->getAudio()
-        ->disconnectOutputs();
+	_Server->getAudio()
+		->disconnectOutputs();
 
-    _Server->getAudio()
-        ->connectOutputTo(
-            ports[ left ].name,
-            ports[ right ].name
-        );
+	_Server->getAudio()
+		->connectOutputTo(
+			ports[ left ].name,
+			ports[ right ].name
+		);
 
 };
 
