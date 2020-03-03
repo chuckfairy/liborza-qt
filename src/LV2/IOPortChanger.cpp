@@ -89,7 +89,9 @@ void IOPortChanger::handleSelectionChanged( int index ) {
 
 void IOPortChanger::connectPort() {
 
-    _Server->getPatchbay()->disconnectJackPort( _port->jack_port );
+	//@TODO
+	Jack::Patchbay * patchbay = (Jack::Patchbay*) _Server->getPatchbay();
+    patchbay->disconnectJackPort( _port->jack_port );
 
     const char * port = _Dropdown->getCurrentJackPort();
 
@@ -97,14 +99,14 @@ void IOPortChanger::connectPort() {
 
     if( _port->flow == Audio::FLOW_INPUT ) {
 
-        _Server->getPatchbay()->connectJackPort(
+        patchbay->connectJackPort(
             port,
             thisPort
         );
 
     } else {
 
-        _Server->getPatchbay()->connectJackPort(
+        patchbay->connectJackPort(
             thisPort,
             port
         );
@@ -121,7 +123,8 @@ void IOPortChanger::connectPort() {
 
 void IOPortChanger::setDefaultConnected() {
 
-    vector<const char *> connections = _Server->getPatchbay()->getConnectedPorts( _port );
+	Jack::Patchbay * patchbay = (Jack::Patchbay*) _Server->getPatchbay();
+    vector<const char *> connections = patchbay->getConnectedPorts( _port );
 
     if( connections.empty() ) {
 

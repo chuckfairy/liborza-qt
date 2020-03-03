@@ -3,10 +3,10 @@
  */
 #pragma once
 
-#include <Layouts/Layout.h>
-
 #include <json/json.hpp>
 
+#include <Audio/Server.h>
+#include <Audio/Patchbay.h>
 #include <Audio/PatchbayPresetLoader.h>
 
 #include <Util/Dispatcher.h>
@@ -15,27 +15,27 @@
 
 using nlohmann::json;
 
-using Jack::Server;
-
-using Orza::Widget::Patchbay;
-
-
-
-namespace Orza { namespace Server { namespace Layouts {
+//using Orza::Widget::Patchbay;
+using Audio::PatchbayPresetLoader;
+//using Audio::Server;
 
 
-class PresetLoader : public Audio::PatchbayPresetLoader {
+
+namespace Orza { namespace Layouts {
+
+
+class PresetLoader : public PatchbayPresetLoader {
 
 	public:
 
-		PresetLoader( Jack::Server * );
+		PresetLoader( ::Audio::Server * );
 
 
 		/**
 		 * Virtuals
 		 */
 
-		void load( json settings );
+		virtual void load( json settings );
 
 		void setup();
 		void takedown();
@@ -43,10 +43,10 @@ class PresetLoader : public Audio::PatchbayPresetLoader {
 
 	protected:
 
-		Jack::Server * _Server;
+		::Audio::Patchbay * _AudioPatchbay;
 
-		Patchbay * _Patchbay;
+		Orza::Widget::Patchbay * _Patchbay;
 
 };
 
-}; }; };
+}; };

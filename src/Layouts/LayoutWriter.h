@@ -36,7 +36,7 @@ class LayoutWriter : public PatchbayPresetWriter {
 		 /**
 		  * @TODO
 		  */
-		void writeLayoutToFile( string fileName, Patchbay * p ) {
+		virtual void writeLayoutToFile( string fileName, Patchbay * p ) {
 
 			json output = getPatchbayJSON( fileName, p );
 

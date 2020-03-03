@@ -13,6 +13,7 @@
 #include <Widget/BaseLineEdit.h>
 
 #include <Layouts/LayoutWriter.h>
+#include <Settings/PresetLoader.h>
 
 #include <ui_SettingsLayout.h>
 
@@ -20,6 +21,8 @@
 using Orza::Widget::InputDropdown;
 using Orza::Widget::OutputDropdown;
 using Jack::Server;
+using Orza::Layouts::PresetLoader;
+using Orza::Layouts::LayoutWriter;
 
 
 /**
@@ -40,7 +43,7 @@ class Layout : public QWidget {
 	public:
 
 		Layout( Server * );
-		Layout( Server *, Orza::Layouts::LayoutWriter * );
+		Layout( Server *, LayoutWriter *, PresetLoader * );
 
 		void updateOutputPorts();
 
@@ -84,6 +87,7 @@ class Layout : public QWidget {
 		Ui_SettingsLayout _UI;
 
 		Orza::Layouts::LayoutWriter * _LayoutWriter;
+		Orza::Layouts::PresetLoader * _PresetLoader;
 
 		/**
 		 * Widget dropdowns

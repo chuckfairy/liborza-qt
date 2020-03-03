@@ -20,6 +20,7 @@ namespace Orza { namespace Widget {
 
 Patchbay::Patchbay( Server * server ) :
     _Server( server ),
+    _Patchbay( server->getPatchbay() ),
     _WidgetContent( new QWidget() ),
     _LayoutWidget( new QWidget() ),
     _Dropdown( new EffectDropdown( LoadedPlugins::getInstance() ) ),
@@ -79,9 +80,7 @@ void Patchbay::handleAddClick() {
 
 void Patchbay::addPlugin( Plugin * p ) {
 
-    Jack::Patchbay * h = _Server->getPatchbay();
-
-    h->getEffects()->addEffect( p );
+    _Patchbay->getEffects()->addEffect( p );
 
     PatchbayPlugin * plugin = new PatchbayPlugin( _Server, p );
 
@@ -115,9 +114,7 @@ void Patchbay::addPlugin( Plugin * p ) {
 
 void Patchbay::removePlugin( PatchbayPlugin * plugin ) {
 
-    Jack::Patchbay * h = _Server->getPatchbay();
-
-    h->getEffects()->removeEffect( plugin->getPlugin() );
+    _Patchbay->getEffects()->removeEffect( plugin->getPlugin() );
 
     delete plugin;
 
@@ -136,9 +133,7 @@ void Patchbay::handleRemoveClick( PatchbayPlugin * plugin ) {
 
 void Patchbay::handleActivateClick( PatchbayPlugin * plugin ) {
 
-    Jack::Patchbay * h = _Server->getPatchbay();
-
-    h->getEffects()->connectEffectPorts();
+    _Patchbay->getEffects()->connectEffectPorts();
 
 };
 

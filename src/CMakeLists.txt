@@ -44,6 +44,7 @@ include_directories(
     "${LIBORZAQT_ROOT_PATH}/../liborza/lib-src"
     "${LIBORZA_ROOT_PATH}/lib-src"
     "${LIBORZA_ROOT_PATH}/src/common/Audio"
+    "${LIBORZA_ROOT_PATH}/src/"
 	"${LIBORZAQT_ROOT_PATH}/../liborza/lib-src/json"
 
 	${LIBORZA_LIB_PATH}

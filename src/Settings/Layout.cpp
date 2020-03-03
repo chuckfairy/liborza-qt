@@ -19,6 +19,8 @@
 using Orza::Widget::InputDropdown;
 using Orza::Widget::OutputDropdown;
 using Jack::Server;
+using Orza::Layouts::PresetLoader;
+using Orza::Layouts::LayoutWriter;
 
 using std::string;
 using std::vector;
@@ -32,13 +34,14 @@ namespace Orza { namespace Settings {
  */
 
 Layout::Layout( Server * win ) :
-	Layout::Layout( win, new Orza::Layouts::LayoutWriter )
+	Layout::Layout( win, new LayoutWriter, new PresetLoader( win ) )
 {
 }
 
-Layout::Layout( Server * win,  Orza::Layouts::LayoutWriter * writer ) :
+Layout::Layout( Server * win,  LayoutWriter * writer, PresetLoader * loader ) :
 	_Server( win ),
 	_LayoutWriter( writer ),
+	_PresetLoader( loader ),
 	_PresetName( new Widget::BaseLineEdit )
 {
 
@@ -73,15 +76,15 @@ void Layout::setDropdowns() {
 
 	QComboBox * dropdown = _UI.load_layout_dropdown;
 
-	//vector<string> fileNames = _App->getLayoutLoader()->getFileNames();
+	vector<string> fileNames = _PresetLoader->getFileNames();
 
-	//vector<string>::const_iterator it;
+	vector<string>::const_iterator it;
 
-	//for( it = fileNames.begin(); it < fileNames.end(); ++ it ) {
+	for( it = fileNames.begin(); it < fileNames.end(); ++ it ) {
 
-		//dropdown->addItem( it->c_str() );
+		dropdown->addItem( it->c_str() );
 
-	//}
+	}
 
 };
 
@@ -166,7 +169,7 @@ void Layout::loadPreset() {
 		->currentText()
 		.toStdString();
 
-	//_App->getLayoutLoader()->getCurrent()->loadFromName( layoutName.c_str() );
+	_PresetLoader->loadFromName( layoutName.c_str() );
 
 };
 

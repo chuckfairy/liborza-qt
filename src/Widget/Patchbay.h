@@ -78,6 +78,7 @@ class Patchbay : public QWidget {
     private:
 
         Server * _Server;
+		::Audio::Patchbay * _Patchbay;
 
         QWidget * _WidgetContent;
 

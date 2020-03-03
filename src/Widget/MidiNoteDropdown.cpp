@@ -66,7 +66,7 @@ const char * MidiNoteDropdown::buildDropdown( int id ) {
 
     const char * format = "%s (%i)";
 
-    const char * name = Orza::Midi::NOTE_NAMES[ id ];
+    const char * name = Orza::Midi::NOTE_NAMES[ id - 21 ];
 
 	char * data = (char*) malloc(
 		( sizeof( format ) + sizeof( name ) + 10 )

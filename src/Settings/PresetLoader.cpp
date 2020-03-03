@@ -13,23 +13,22 @@
 
 
 using nlohmann::json;
+//using Audio::Server;
 
-using Jack::Server;
-
-using Orza::Widget::Patchbay;
+//using Orza::Widget::Patchbay;
 
 using Orza::PluginSearch::LoadedPlugins;
 
 
-namespace Orza { namespace Server { namespace Layouts {
+namespace Orza { namespace Layouts {
 
 /**
  * Construct
  */
 
-PresetLoader::PresetLoader( Jack::Server * app ) :
-	_Server( app ),
-	_Patchbay( new Patchbay( app ) )
+PresetLoader::PresetLoader( ::Audio::Server * app ) :
+	_AudioPatchbay( app->getPatchbay() ),
+	_Patchbay( new Orza::Widget::Patchbay( (::Jack::Server*) app ) )
 {
 };
 
@@ -53,7 +52,7 @@ void PresetLoader::takedown() {
 
 void PresetLoader::load( json j ) {
 
-	Jack::Patchbay * host = _Server->getPatchbay();
+	Audio::Patchbay * host = _AudioPatchbay;
 
 	host->setActive( false );
 
@@ -107,4 +106,4 @@ void PresetLoader::load( json j ) {
 
 };
 
-}; }; };
+}; };
