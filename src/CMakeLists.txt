@@ -13,13 +13,13 @@ find_package(Qt5Qml REQUIRED)
 
 
 file(GLOB liborza-qt_UIS
-    Widget/PatchBay.ui
-    Widget/SingleInstrument.ui
-    Widget/PatchBayItem.ui
-    LV2/PluginArea.ui
-    MidiControl/Control.ui
-    MidiControl/ControlPort.ui
-    MidiControl/ControlPortValue.ui
+	Widget/PatchBay.ui
+	Widget/SingleInstrument.ui
+	Widget/PatchBayItem.ui
+	LV2/PluginArea.ui
+	MidiControl/Control.ui
+	MidiControl/ControlPort.ui
+	MidiControl/ControlPortValue.ui
 	Settings/SettingsLayout.ui
 )
 
@@ -34,8 +34,6 @@ qt5_add_resources(RESOURCES ./Resources.qrc)
 
 #FIND_PACKAGE(Boost)
 find_package( Boost 1.45.0 COMPONENTS filesystem regex )
-
-message("PATH", "${LIBORZAQT_ROOT_PATH}/../liborza/lib-src")
 
 include_directories(
     ${CMAKE_CURRENT_BINARY_DIR}
@@ -94,6 +92,7 @@ FILE( GLOB moc_files
     Widget/InputDropdown.h
     Widget/OutputDropdown.h
     Widget/TreeNode.h
+    Widget/Popup.h
     LV2/IOPortChanger.h
     LV2/PresetDropdown.h
     LV2/WindowLayout.h
