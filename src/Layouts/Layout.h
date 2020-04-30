@@ -10,7 +10,7 @@
 using std::string;
 
 
-namespace Orza { namespace App { namespace Layouts {
+namespace Orza { namespace Layouts {
 
 
 /**
@@ -52,4 +52,4 @@ class Layout : public Audio::PatchbayPresetLoader {
 
 };
 
-}; }; };
+}; };

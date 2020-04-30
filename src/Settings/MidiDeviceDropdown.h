@@ -19,11 +19,12 @@ using Jack::Server;
  */
 
 class MidiDeviceDropdown : public QComboBox {
+	Q_OBJECT
 
 
     public:
 
-        MidiDeviceDropdown( QWidget * parent );
+        //MidiDeviceDropdown( QWidget * parent );
         MidiDeviceDropdown( Server * );
 
 

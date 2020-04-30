@@ -7,10 +7,10 @@
 
 #include "Layout.h"
 
-namespace Orza { namespace App { namespace Layouts {
+namespace Orza { namespace Layouts {
 
 class LayoutRepository : public Util::Repository<Layout> {
 
 };
 
-}; }; };
+}; };
