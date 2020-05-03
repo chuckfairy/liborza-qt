@@ -15,6 +15,8 @@
 #include <Layouts/LayoutWriter.h>
 #include <Settings/PresetLoader.h>
 
+#include "MidiDeviceDropdown.h"
+
 #include <ui_SettingsLayout.h>
 
 
@@ -99,6 +101,8 @@ class Layout : public QWidget {
 		InputDropdown * _InputDropdown;
 
 		Widget::BaseLineEdit * _PresetName;
+
+		MidiDeviceDropdown * _midiDevices;
 
 
 		/**

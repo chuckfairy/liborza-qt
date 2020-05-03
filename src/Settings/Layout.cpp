@@ -16,6 +16,7 @@
 #include <Jack/Patchbay.h>
 #include <Jack/PatchbayEffects.h>
 
+
 using Orza::Widget::InputDropdown;
 using Orza::Widget::OutputDropdown;
 using Jack::Server;
@@ -42,7 +43,8 @@ Layout::Layout( Server * win,  LayoutWriter * writer, PresetLoader * loader ) :
 	_Server( win ),
 	_LayoutWriter( writer ),
 	_PresetLoader( loader ),
-	_PresetName( new Widget::BaseLineEdit )
+	_PresetName( new Widget::BaseLineEdit ),
+	_midiDevices( new MidiDeviceDropdown( win ) )
 {
 
 	_UI.setupUi(this);
@@ -131,6 +133,8 @@ void Layout::setAppUI() {
 	_UI.horizontalLayout_5->addWidget( _LeftOutput );
 	_UI.horizontalLayout_5->addWidget( _RightOutput );
 	_UI.input_layout->addWidget( _InputDropdown );
+
+	_UI.midi_layout->addWidget( _midiDevices );
 
 
 	//Add layout options
