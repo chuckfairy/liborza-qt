@@ -32,6 +32,12 @@ PresetLoader::PresetLoader( ::Audio::Server * app ) :
 {
 };
 
+PresetLoader::PresetLoader( ::Audio::Server * app, Orza::Widget::Patchbay * patchbay ) :
+	_AudioPatchbay( app->getPatchbay() ),
+	_Patchbay( patchbay )
+{
+};
+
 
 /**
  * Main virtuals

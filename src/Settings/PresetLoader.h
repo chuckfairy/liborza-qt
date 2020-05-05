@@ -29,6 +29,7 @@ class PresetLoader : public PatchbayPresetLoader {
 	public:
 
 		PresetLoader( ::Audio::Server * );
+		PresetLoader( ::Audio::Server *, Orza::Widget::Patchbay * );
 
 
 		/**
