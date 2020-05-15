@@ -28,7 +28,8 @@ namespace Orza { namespace Layouts {
 
 PresetLoader::PresetLoader( ::Audio::Server * app ) :
 	_AudioPatchbay( app->getPatchbay() ),
-	_Patchbay( new Orza::Widget::Patchbay( (::Jack::Server*) app ) )
+	_Patchbay( new Orza::Widget::Patchbay( (::Jack::Server*) app ) ),
+	_SingleInstrument( new Orza::Widget::SingleInstrument( app ) )
 {
 };
 
@@ -52,6 +53,19 @@ void PresetLoader::takedown() {
 
 };
 
+void PresetLoader::setPatchbay(Orza::Widget::Patchbay * patch) {
+
+	_Patchbay = patch;
+
+};
+
+void PresetLoader::setSingleInstrument(Orza::Widget::SingleInstrument * inst) {
+
+	_SingleInstrument = inst;
+
+};
+
+
 /**
  * Main layout load
  */
@@ -73,6 +87,8 @@ void PresetLoader::load( json j ) {
 
 		Audio::Plugin * p = search->getById( id.c_str() );
 		Audio::Plugin * clone = (Audio::Plugin*) p->clone();
+
+		_SingleInstrument->setPlugin( clone );
 
 		setPortsFromJSON( clone, instrument );
 

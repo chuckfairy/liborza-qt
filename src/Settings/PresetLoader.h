@@ -12,6 +12,7 @@
 #include <Util/Dispatcher.h>
 
 #include <Widget/Patchbay.h>
+#include <Widget/SingleInstrument.h>
 
 using nlohmann::json;
 
@@ -42,11 +43,20 @@ class PresetLoader : public PatchbayPresetLoader {
 		void takedown();
 
 
+		/**
+		 * Setters
+		 * @TODO maybe remove
+		 */
+		void setPatchbay(Orza::Widget::Patchbay *);
+		void setSingleInstrument(Orza::Widget::SingleInstrument *);
+
+
 	protected:
 
 		::Audio::Patchbay * _AudioPatchbay;
 
 		Orza::Widget::Patchbay * _Patchbay;
+		Orza::Widget::SingleInstrument * _SingleInstrument;
 
 };
 
