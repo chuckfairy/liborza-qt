@@ -35,6 +35,7 @@ PresetLoader::PresetLoader( ::Audio::Server * app ) :
 
 PresetLoader::PresetLoader( ::Audio::Server * app, Orza::Widget::Patchbay * patchbay ) :
 	_AudioPatchbay( app->getPatchbay() ),
+	_SingleInstrument( new Orza::Widget::SingleInstrument( app ) ),
 	_Patchbay( patchbay )
 {
 };
