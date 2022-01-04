@@ -73,25 +73,43 @@
            <x>0</x>
            <y>0</y>
            <width>421</width>
-           <height>309</height>
+           <height>312</height>
           </rect>
          </property>
          <layout class="QGridLayout" name="gridLayout_3">
+          <property name="leftMargin">
+           <number>9</number>
+          </property>
+          <property name="rightMargin">
+           <number>9</number>
+          </property>
           <item row="2" column="0" colspan="2">
            <widget class="QScrollArea" name="control_scroll_area">
             <property name="widgetResizable">
              <bool>true</bool>
             </property>
-            <widget class="QWidget" name="scrollAreaWidgetContents">
+            <widget class="QWidget" name="ContentScrollWidgetContents">
              <property name="geometry">
               <rect>
                <x>0</x>
                <y>0</y>
                <width>401</width>
-               <height>227</height>
+               <height>236</height>
               </rect>
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_3">
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
               <item>
                <layout class="QVBoxLayout" name="scroll_layout"/>
               </item>
