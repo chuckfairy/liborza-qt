@@ -21,6 +21,7 @@
 #include <Widget/InputDropdown.h>
 #include <Widget/OutputDropdown.h>
 
+#include <Widget/Spoiler.h>
 #include "PresetDropdown.h"
 #include "WindowLayout.h"
 #include "WindowLayout.h"
@@ -184,6 +185,8 @@ QWidget * UIDriver::createControlWidget() {
 	QLayout * fullLayout = new QVBoxLayout;
 	QWidget * fullWidget = new QWidget;
 
+	QWidget * topLevel = new QWidget;
+	QLayout * topLevelLayout = new QVBoxLayout;
 
 	//Grid layout for controls
 	QWidget* grid = new QWidget();
@@ -262,11 +265,25 @@ QWidget * UIDriver::createControlWidget() {
 
 	}
 
+	//layout->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+
 	fullWidget->setLayout( fullLayout );
+	Spoiler * spoiler = new Spoiler(topLevel);
+	spoiler->setText("Control");
+	spoiler->setContent(fullWidget, 10000);
+
+	topLevelLayout->addWidget(spoiler);
+	topLevelLayout->addWidget(fullWidget);
+	topLevel->setLayout(topLevelLayout);
+
+	QGroupBox* groupBox = new QGroupBox("Control");
+	groupBox->setLayout(topLevelLayout);
+
+	//fullLayout->addWidget(spoiler);
 
 	lilv_node_free( pprop_notOnGUI );
 
-	return fullWidget;
+	return groupBox;
 
 };
 
