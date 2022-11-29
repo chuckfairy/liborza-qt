@@ -9,6 +9,7 @@
 #include <lilv/lilv.h>
 
 #include <LV2/Preset.h>
+#include <Widget/AbstractDropdown.h>
 
 
 /**
@@ -29,7 +30,7 @@ namespace Orza { namespace LV2UI {
  * Main class
  */
 
-class PresetDropdown : public QComboBox {
+class PresetDropdown : public Orza::Widget::AbstractDropdown {
 
     Q_OBJECT
 

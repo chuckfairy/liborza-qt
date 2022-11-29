@@ -2,6 +2,7 @@
  * ControlPort widget editor
  */
 #include <QMessageBox>
+#include <QListView>
 
 #include <Audio/Port.h>
 
@@ -40,6 +41,8 @@ ControlPort::ControlPort( Server * app, Jack::MidiControlPort * p ) :
 	setViewButton( _UI.view_btn, _UI.scrollArea );
 
 	setDeleteButton( _UI.delete_btn );
+
+	_UI.port_add_dropdown->setView(new QListView());
 
 
 	//Events

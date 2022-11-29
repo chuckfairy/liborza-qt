@@ -3,6 +3,8 @@
  */
 #pragma once
 
+#include <vector>
+
 #include <QtCore>
 #include <QWidget>
 
@@ -21,6 +23,7 @@
 
 #include "ControlPortValue.h"
 
+using std::vector;
 
 using Jack::Server;
 using Audio::PluginPortContainer;

@@ -1,3 +1,5 @@
 build/
 
 liborza.pro.user
+
+*.gcno

@@ -1,12 +1,16 @@
 /**
  * Control widget editor
  */
+#include <QListView>
+
 #include <Jack/Midi.h>
 
 #include "ControlPort.h"
 
 #include "Control.h"
 
+
+using std::vector;
 
 using Jack::MidiControlPort;
 using Jack::Server;
@@ -26,6 +30,7 @@ Control::Control( Server * app ) :
 
 	_UI.setupUi( _WidgetContent );
 
+	_UI.control_dropdown->setView(new QListView());
 
 	//Events
 
@@ -47,8 +52,6 @@ void Control::addControlPort() {
 	ControlPort * uiPort = new ControlPort( _Server, port );
 
 	_UI.scroll_layout->addWidget( uiPort );
-
-	std::cout <<"EHLPERWER\n\n";
 
 
 	//set events
